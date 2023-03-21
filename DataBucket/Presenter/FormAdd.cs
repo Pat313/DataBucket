@@ -15,9 +15,9 @@ namespace DataBucket.Presenter
     {
         private readonly Connection conn = Connection.Instance;
 
-        [DllImport("uxtheme", ExactSpelling = true, CharSet = CharSet.Unicode)]
+        /*[DllImport("uxtheme", ExactSpelling = true, CharSet = CharSet.Unicode)]
         public extern static Int32 SetWindowTheme(IntPtr hWnd,
-              String textSubAppName, String textSubIdList);
+              String textSubAppName, String textSubIdList);*/
 
         private int selectedRepairman = 0;
         private int selectedConcomitant = 0;

@@ -50,6 +50,7 @@
             txtId = new TextBox();
             label3 = new Label();
             groupBox3 = new GroupBox();
+            imgPreview = new UI.ImagePreview();
             groupBox2 = new GroupBox();
             cbPaid = new CheckBox();
             label7 = new Label();
@@ -72,6 +73,7 @@
             btnSave = new Button();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -83,10 +85,9 @@
             btnBack.FlatStyle = FlatStyle.Flat;
             btnBack.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             btnBack.ForeColor = Color.Gainsboro;
-            btnBack.Location = new Point(327, 610);
-            btnBack.Margin = new Padding(3, 4, 3, 4);
+            btnBack.Location = new Point(327, 488);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(129, 62);
+            btnBack.Size = new Size(129, 50);
             btnBack.TabIndex = 99;
             btnBack.Text = "Vissza";
             btnBack.UseVisualStyleBackColor = false;
@@ -103,11 +104,10 @@
             groupBox5.Controls.Add(txtInvoice);
             groupBox5.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox5.ForeColor = Color.Gainsboro;
-            groupBox5.Location = new Point(12, 225);
-            groupBox5.Margin = new Padding(3, 4, 3, 4);
+            groupBox5.Location = new Point(12, 180);
             groupBox5.Name = "groupBox5";
-            groupBox5.Padding = new Padding(3, 8, 3, 4);
-            groupBox5.Size = new Size(560, 214);
+            groupBox5.Padding = new Padding(3, 6, 3, 3);
+            groupBox5.Size = new Size(560, 171);
             groupBox5.TabIndex = 98;
             groupBox5.TabStop = false;
             groupBox5.Text = "Adminisztráció";
@@ -116,7 +116,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label14.Location = new Point(299, 44);
+            label14.Location = new Point(299, 38);
             label14.Name = "label14";
             label14.Size = new Size(66, 24);
             label14.TabIndex = 13;
@@ -130,8 +130,7 @@
             dtpDate.CustomFormat = "yyyy-MM-dd (dddd)";
             dtpDate.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dtpDate.Format = DateTimePickerFormat.Custom;
-            dtpDate.Location = new Point(303, 78);
-            dtpDate.Margin = new Padding(3, 4, 3, 4);
+            dtpDate.Location = new Point(303, 62);
             dtpDate.Name = "dtpDate";
             dtpDate.Size = new Size(251, 32);
             dtpDate.TabIndex = 12;
@@ -140,7 +139,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(3, 131);
+            label13.Location = new Point(3, 108);
             label13.Name = "label13";
             label13.Size = new Size(61, 24);
             label13.TabIndex = 11;
@@ -150,7 +149,7 @@
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label12.Location = new Point(3, 44);
+            label12.Location = new Point(3, 38);
             label12.Name = "label12";
             label12.Size = new Size(70, 24);
             label12.TabIndex = 10;
@@ -164,8 +163,8 @@
             cmbConcomitant.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbConcomitant.ForeColor = Color.Gainsboro;
             cmbConcomitant.FormattingEnabled = true;
-            cmbConcomitant.Location = new Point(7, 165);
-            cmbConcomitant.Margin = new Padding(3, 4, 3, 12);
+            cmbConcomitant.Location = new Point(7, 132);
+            cmbConcomitant.Margin = new Padding(3, 3, 3, 10);
             cmbConcomitant.Name = "cmbConcomitant";
             cmbConcomitant.Size = new Size(290, 32);
             cmbConcomitant.TabIndex = 9;
@@ -178,8 +177,8 @@
             cmbRepairman.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             cmbRepairman.ForeColor = Color.Gainsboro;
             cmbRepairman.FormattingEnabled = true;
-            cmbRepairman.Location = new Point(6, 78);
-            cmbRepairman.Margin = new Padding(3, 4, 3, 12);
+            cmbRepairman.Location = new Point(6, 62);
+            cmbRepairman.Margin = new Padding(3, 3, 3, 10);
             cmbRepairman.Name = "cmbRepairman";
             cmbRepairman.Size = new Size(291, 32);
             cmbRepairman.TabIndex = 8;
@@ -188,7 +187,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(299, 131);
+            label11.Location = new Point(299, 108);
             label11.Name = "label11";
             label11.Size = new Size(110, 24);
             label11.TabIndex = 7;
@@ -200,8 +199,8 @@
             txtInvoice.BorderStyle = BorderStyle.FixedSingle;
             txtInvoice.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtInvoice.ForeColor = Color.Gainsboro;
-            txtInvoice.Location = new Point(303, 165);
-            txtInvoice.Margin = new Padding(3, 4, 3, 12);
+            txtInvoice.Location = new Point(303, 132);
+            txtInvoice.Margin = new Padding(3, 3, 3, 10);
             txtInvoice.Name = "txtInvoice";
             txtInvoice.Size = new Size(251, 32);
             txtInvoice.TabIndex = 6;
@@ -219,11 +218,10 @@
             groupBox4.Controls.Add(label3);
             groupBox4.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox4.ForeColor = Color.Gainsboro;
-            groupBox4.Location = new Point(578, 312);
-            groupBox4.Margin = new Padding(3, 4, 3, 4);
+            groupBox4.Location = new Point(578, 250);
             groupBox4.Name = "groupBox4";
-            groupBox4.Padding = new Padding(3, 8, 3, 4);
-            groupBox4.Size = new Size(328, 290);
+            groupBox4.Padding = new Padding(3, 6, 3, 3);
+            groupBox4.Size = new Size(328, 232);
             groupBox4.TabIndex = 97;
             groupBox4.TabStop = false;
             groupBox4.Text = "Egyéb";
@@ -231,9 +229,9 @@
             // label1
             // 
             label1.Font = new Font("Calibri", 12F, FontStyle.Italic, GraphicsUnit.Point);
-            label1.Location = new Point(6, 214);
+            label1.Location = new Point(6, 171);
             label1.Name = "label1";
-            label1.Size = new Size(316, 72);
+            label1.Size = new Size(316, 58);
             label1.TabIndex = 22;
             label1.Text = "Az itt szereplő értékek nem módosíthatóak manuálisan";
             label1.TextAlign = ContentAlignment.TopCenter;
@@ -242,7 +240,7 @@
             // 
             label17.AutoSize = true;
             label17.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(163, 128);
+            label17.Location = new Point(163, 105);
             label17.Name = "label17";
             label17.Size = new Size(60, 24);
             label17.TabIndex = 21;
@@ -254,8 +252,8 @@
             txtFinal.BorderStyle = BorderStyle.FixedSingle;
             txtFinal.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtFinal.ForeColor = Color.Gainsboro;
-            txtFinal.Location = new Point(167, 161);
-            txtFinal.Margin = new Padding(3, 4, 3, 12);
+            txtFinal.Location = new Point(167, 129);
+            txtFinal.Margin = new Padding(3, 3, 3, 10);
             txtFinal.Name = "txtFinal";
             txtFinal.ReadOnly = true;
             txtFinal.Size = new Size(155, 32);
@@ -265,7 +263,7 @@
             // 
             label16.AutoSize = true;
             label16.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label16.Location = new Point(2, 128);
+            label16.Location = new Point(2, 105);
             label16.Name = "label16";
             label16.Size = new Size(55, 24);
             label16.TabIndex = 19;
@@ -277,8 +275,8 @@
             txtDelivered.BorderStyle = BorderStyle.FixedSingle;
             txtDelivered.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtDelivered.ForeColor = Color.Gainsboro;
-            txtDelivered.Location = new Point(6, 161);
-            txtDelivered.Margin = new Padding(3, 4, 3, 12);
+            txtDelivered.Location = new Point(6, 129);
+            txtDelivered.Margin = new Padding(3, 3, 3, 10);
             txtDelivered.Name = "txtDelivered";
             txtDelivered.ReadOnly = true;
             txtDelivered.Size = new Size(155, 32);
@@ -288,7 +286,7 @@
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label15.Location = new Point(163, 41);
+            label15.Location = new Point(163, 36);
             label15.Name = "label15";
             label15.Size = new Size(115, 24);
             label15.TabIndex = 5;
@@ -300,8 +298,8 @@
             txtExpense.BorderStyle = BorderStyle.FixedSingle;
             txtExpense.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtExpense.ForeColor = Color.Gainsboro;
-            txtExpense.Location = new Point(167, 75);
-            txtExpense.Margin = new Padding(3, 4, 3, 12);
+            txtExpense.Location = new Point(167, 60);
+            txtExpense.Margin = new Padding(3, 3, 3, 10);
             txtExpense.Name = "txtExpense";
             txtExpense.ReadOnly = true;
             txtExpense.Size = new Size(155, 32);
@@ -313,8 +311,8 @@
             txtId.BorderStyle = BorderStyle.FixedSingle;
             txtId.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtId.ForeColor = Color.Gainsboro;
-            txtId.Location = new Point(6, 75);
-            txtId.Margin = new Padding(3, 4, 3, 12);
+            txtId.Location = new Point(6, 60);
+            txtId.Margin = new Padding(3, 3, 3, 10);
             txtId.Name = "txtId";
             txtId.ReadOnly = true;
             txtId.Size = new Size(155, 32);
@@ -324,7 +322,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(2, 41);
+            label3.Location = new Point(2, 36);
             label3.Name = "label3";
             label3.Size = new Size(27, 24);
             label3.TabIndex = 3;
@@ -332,16 +330,24 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(imgPreview);
             groupBox3.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.ForeColor = Color.Gainsboro;
-            groupBox3.Location = new Point(12, 446);
-            groupBox3.Margin = new Padding(3, 4, 3, 4);
+            groupBox3.Location = new Point(12, 357);
             groupBox3.Name = "groupBox3";
-            groupBox3.Padding = new Padding(6, 11, 6, 8);
-            groupBox3.Size = new Size(560, 156);
+            groupBox3.Padding = new Padding(6, 9, 6, 6);
+            groupBox3.Size = new Size(560, 125);
             groupBox3.TabIndex = 96;
             groupBox3.TabStop = false;
             groupBox3.Text = "Csatolt képek";
+            // 
+            // imgPreview
+            // 
+            imgPreview.Location = new Point(7, 38);
+            imgPreview.Margin = new Padding(0);
+            imgPreview.Name = "imgPreview";
+            imgPreview.Size = new Size(540, 60);
+            imgPreview.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -358,11 +364,10 @@
             groupBox2.Controls.Add(label10);
             groupBox2.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox2.ForeColor = Color.Gainsboro;
-            groupBox2.Location = new Point(578, 15);
-            groupBox2.Margin = new Padding(3, 4, 3, 4);
+            groupBox2.Location = new Point(578, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Padding = new Padding(3, 8, 3, 4);
-            groupBox2.Size = new Size(328, 290);
+            groupBox2.Padding = new Padding(3, 6, 3, 3);
+            groupBox2.Size = new Size(328, 232);
             groupBox2.TabIndex = 95;
             groupBox2.TabStop = false;
             groupBox2.Text = "Pénzügy";
@@ -381,8 +386,7 @@
             cbPaid.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             cbPaid.ForeColor = Color.Gainsboro;
             cbPaid.Image = Properties.Resources.crossmark3;
-            cbPaid.Location = new Point(7, 231);
-            cbPaid.Margin = new Padding(3, 4, 3, 4);
+            cbPaid.Location = new Point(7, 188);
             cbPaid.Name = "cbPaid";
             cbPaid.Size = new Size(111, 38);
             cbPaid.TabIndex = 105;
@@ -394,7 +398,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(2, 34);
+            label7.Location = new Point(2, 30);
             label7.Name = "label7";
             label7.Size = new Size(72, 24);
             label7.TabIndex = 12;
@@ -414,8 +418,7 @@
             cbReceipt.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             cbReceipt.ForeColor = Color.Gainsboro;
             cbReceipt.Image = Properties.Resources.crossmark3;
-            cbReceipt.Location = new Point(6, 175);
-            cbReceipt.Margin = new Padding(3, 4, 3, 4);
+            cbReceipt.Location = new Point(6, 143);
             cbReceipt.Name = "cbReceipt";
             cbReceipt.Size = new Size(107, 38);
             cbReceipt.TabIndex = 104;
@@ -429,8 +432,7 @@
             txtIncome.BorderStyle = BorderStyle.FixedSingle;
             txtIncome.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtIncome.ForeColor = Color.Gainsboro;
-            txtIncome.Location = new Point(6, 68);
-            txtIncome.Margin = new Padding(3, 4, 3, 4);
+            txtIncome.Location = new Point(6, 54);
             txtIncome.Name = "txtIncome";
             txtIncome.Size = new Size(155, 32);
             txtIncome.TabIndex = 11;
@@ -449,8 +451,7 @@
             cbTransaction.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             cbTransaction.ForeColor = Color.Gainsboro;
             cbTransaction.Image = Properties.Resources.crossmark3;
-            cbTransaction.Location = new Point(6, 119);
-            cbTransaction.Margin = new Padding(3, 4, 3, 4);
+            cbTransaction.Location = new Point(6, 98);
             cbTransaction.Name = "cbTransaction";
             cbTransaction.Size = new Size(101, 38);
             cbTransaction.TabIndex = 103;
@@ -464,8 +465,8 @@
             txtMaterial.BorderStyle = BorderStyle.FixedSingle;
             txtMaterial.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtMaterial.ForeColor = Color.Gainsboro;
-            txtMaterial.Location = new Point(167, 68);
-            txtMaterial.Margin = new Padding(3, 4, 3, 12);
+            txtMaterial.Location = new Point(167, 54);
+            txtMaterial.Margin = new Padding(3, 3, 3, 10);
             txtMaterial.Name = "txtMaterial";
             txtMaterial.Size = new Size(155, 32);
             txtMaterial.TabIndex = 13;
@@ -476,8 +477,8 @@
             txtFuel.BorderStyle = BorderStyle.FixedSingle;
             txtFuel.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtFuel.ForeColor = Color.Gainsboro;
-            txtFuel.Location = new Point(167, 154);
-            txtFuel.Margin = new Padding(3, 4, 3, 12);
+            txtFuel.Location = new Point(167, 123);
+            txtFuel.Margin = new Padding(3, 3, 3, 10);
             txtFuel.Name = "txtFuel";
             txtFuel.Size = new Size(155, 32);
             txtFuel.TabIndex = 15;
@@ -488,8 +489,8 @@
             txtOther.BorderStyle = BorderStyle.FixedSingle;
             txtOther.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtOther.ForeColor = Color.Gainsboro;
-            txtOther.Location = new Point(167, 240);
-            txtOther.Margin = new Padding(3, 4, 3, 12);
+            txtOther.Location = new Point(167, 192);
+            txtOther.Margin = new Padding(3, 3, 3, 10);
             txtOther.Name = "txtOther";
             txtOther.Size = new Size(155, 32);
             txtOther.TabIndex = 17;
@@ -498,7 +499,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(163, 29);
+            label8.Location = new Point(163, 26);
             label8.Name = "label8";
             label8.Size = new Size(119, 24);
             label8.TabIndex = 14;
@@ -508,7 +509,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(163, 120);
+            label9.Location = new Point(163, 99);
             label9.Name = "label9";
             label9.Size = new Size(106, 24);
             label9.TabIndex = 16;
@@ -518,7 +519,7 @@
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label10.Location = new Point(163, 206);
+            label10.Location = new Point(163, 168);
             label10.Name = "label10";
             label10.Size = new Size(117, 24);
             label10.TabIndex = 18;
@@ -534,11 +535,10 @@
             groupBox1.Controls.Add(txtAddress);
             groupBox1.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.Gainsboro;
-            groupBox1.Location = new Point(12, 15);
-            groupBox1.Margin = new Padding(3, 4, 3, 4);
+            groupBox1.Location = new Point(12, 12);
             groupBox1.Name = "groupBox1";
-            groupBox1.Padding = new Padding(3, 8, 3, 4);
-            groupBox1.Size = new Size(560, 202);
+            groupBox1.Padding = new Padding(3, 6, 3, 3);
+            groupBox1.Size = new Size(560, 162);
             groupBox1.TabIndex = 94;
             groupBox1.TabStop = false;
             groupBox1.Text = "Ügyfél";
@@ -549,8 +549,8 @@
             txtName.BorderStyle = BorderStyle.FixedSingle;
             txtName.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtName.ForeColor = Color.Gainsboro;
-            txtName.Location = new Point(6, 68);
-            txtName.Margin = new Padding(3, 4, 3, 12);
+            txtName.Location = new Point(6, 54);
+            txtName.Margin = new Padding(3, 3, 3, 10);
             txtName.Name = "txtName";
             txtName.Size = new Size(345, 32);
             txtName.TabIndex = 6;
@@ -559,7 +559,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(353, 34);
+            label6.Location = new Point(353, 30);
             label6.Name = "label6";
             label6.Size = new Size(113, 24);
             label6.TabIndex = 9;
@@ -569,7 +569,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(3, 34);
+            label5.Location = new Point(3, 30);
             label5.Name = "label5";
             label5.Size = new Size(42, 24);
             label5.TabIndex = 7;
@@ -581,8 +581,8 @@
             txtPhone.BorderStyle = BorderStyle.FixedSingle;
             txtPhone.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtPhone.ForeColor = Color.Gainsboro;
-            txtPhone.Location = new Point(357, 68);
-            txtPhone.Margin = new Padding(3, 4, 3, 12);
+            txtPhone.Location = new Point(357, 54);
+            txtPhone.Margin = new Padding(3, 3, 3, 10);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(197, 32);
             txtPhone.TabIndex = 10;
@@ -591,7 +591,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(3, 120);
+            label4.Location = new Point(3, 99);
             label4.Name = "label4";
             label4.Size = new Size(42, 24);
             label4.TabIndex = 5;
@@ -603,8 +603,8 @@
             txtAddress.BorderStyle = BorderStyle.FixedSingle;
             txtAddress.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtAddress.ForeColor = Color.Gainsboro;
-            txtAddress.Location = new Point(6, 154);
-            txtAddress.Margin = new Padding(3, 4, 3, 12);
+            txtAddress.Location = new Point(6, 123);
+            txtAddress.Margin = new Padding(3, 3, 3, 10);
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(548, 32);
             txtAddress.TabIndex = 4;
@@ -617,21 +617,18 @@
             btnSave.FlatStyle = FlatStyle.Flat;
             btnSave.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
             btnSave.ForeColor = Color.Gainsboro;
-            btnSave.Location = new Point(462, 610);
-            btnSave.Margin = new Padding(3, 4, 3, 4);
+            btnSave.Location = new Point(462, 488);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(129, 62);
+            btnSave.Size = new Size(129, 50);
             btnSave.TabIndex = 93;
             btnSave.Text = "Mentés";
             btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnOK_Click;
             // 
             // FormEdit
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Inherit;
             BackColor = Color.FromArgb(40, 40, 40);
-            ClientSize = new Size(918, 688);
+            ClientSize = new Size(918, 550);
             Controls.Add(btnBack);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
@@ -645,11 +642,12 @@
             Name = "FormEdit";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Kliens Módosítása";
-            Load += FormModify_Load;
+            Load += FormEdit_Load;
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -658,48 +656,47 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.DateTimePicker dtpDate;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox cmbConcomitant;
-        private System.Windows.Forms.ComboBox cmbRepairman;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox txtInvoice;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtFinal;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox txtDelivered;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtExpense;
-        private System.Windows.Forms.TextBox txtId;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.GroupBox groupBox3;
         private UI.ImagePreview imgPreview;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cbPaid;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox cbReceipt;
-        private System.Windows.Forms.TextBox txtIncome;
-        private System.Windows.Forms.CheckBox cbTransaction;
-        private System.Windows.Forms.TextBox txtMaterial;
-        private System.Windows.Forms.TextBox txtFuel;
-        private System.Windows.Forms.TextBox txtOther;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtName;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Button btnSave;
+        private Button btnBack;
+        private GroupBox groupBox5;
+        private Label label14;
+        private DateTimePicker dtpDate;
+        private Label label13;
+        private Label label12;
+        private ComboBox cmbConcomitant;
+        private ComboBox cmbRepairman;
+        private Label label11;
+        private TextBox txtInvoice;
+        private GroupBox groupBox4;
+        private Label label1;
+        private Label label17;
+        private TextBox txtFinal;
+        private Label label16;
+        private TextBox txtDelivered;
+        private Label label15;
+        private TextBox txtExpense;
+        private TextBox txtId;
+        private Label label3;
+        private GroupBox groupBox3;
+        private GroupBox groupBox2;
+        private CheckBox cbPaid;
+        private Label label7;
+        private CheckBox cbReceipt;
+        private TextBox txtIncome;
+        private CheckBox cbTransaction;
+        private TextBox txtMaterial;
+        private TextBox txtFuel;
+        private TextBox txtOther;
+        private Label label8;
+        private Label label9;
+        private Label label10;
+        private GroupBox groupBox1;
+        private TextBox txtName;
+        private Label label6;
+        private Label label5;
+        private TextBox txtPhone;
+        private Label label4;
+        private TextBox txtAddress;
+        private Button btnSave;
     }
 }

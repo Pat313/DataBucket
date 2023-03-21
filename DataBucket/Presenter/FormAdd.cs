@@ -27,7 +27,7 @@ namespace DataBucket.Presenter
             InitializeComponent();
         }
 
-        private async void FormRecord_Load(object sender, EventArgs e)
+        private async void FormAdd_Load(object sender, EventArgs e)
         {
             //SetWindowTheme(dtpDate.Handle, "", "");
 

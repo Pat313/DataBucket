@@ -70,8 +70,10 @@
             label4 = new Label();
             txtAddress = new TextBox();
             btnBack = new Button();
+            imgPreview = new UI.ImagePreview();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             SuspendLayout();
@@ -330,6 +332,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(imgPreview);
             groupBox3.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             groupBox3.ForeColor = Color.Gainsboro;
             groupBox3.Location = new Point(12, 357);
@@ -614,6 +617,14 @@
             btnBack.Text = "Vissza";
             btnBack.UseVisualStyleBackColor = false;
             // 
+            // imagePreview1
+            // 
+            imgPreview.Location = new Point(7, 38);
+            imgPreview.Margin = new Padding(0);
+            imgPreview.Name = "imgPreview";
+            imgPreview.Size = new Size(540, 60);
+            imgPreview.TabIndex = 0;
+            // 
             // FormAdd
             // 
             AutoScaleDimensions = new SizeF(14F, 33F);
@@ -634,11 +645,12 @@
             Name = "FormAdd";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Munka hozzáadása";
-            Load += FormRecord_Load;
+            Load += FormAdd_Load;
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox4.ResumeLayout(false);
             groupBox4.PerformLayout();
+            groupBox3.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -647,6 +659,7 @@
         }
 
         #endregion
+        private UI.ImagePreview imgPreview;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label14;
@@ -682,7 +695,6 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAddress;
-        private UI.ImagePreview imgPreview;
         private System.Windows.Forms.CheckBox cbPaid;
         private System.Windows.Forms.CheckBox cbReceipt;
         private System.Windows.Forms.CheckBox cbTransaction;

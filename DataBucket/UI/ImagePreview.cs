@@ -21,7 +21,7 @@ namespace DataBucket.UI
         // Fields
         private List<PictureBox> pictureBoxes;
         private Image tempImage;
-        
+
         public event EventHandler ClipboardIsEmpty;
 
         public ImagePreview()
@@ -31,7 +31,7 @@ namespace DataBucket.UI
 
         private void ImagePreview_Load(object sender, EventArgs e)
         {
-            PictureBoxes = new List<PictureBox> { pbPreview0, pbPreview1, pbPreview2, pbPreview3, pbPreview4, 
+            PictureBoxes = new List<PictureBox> { pbPreview0, pbPreview1, pbPreview2, pbPreview3, pbPreview4,
                 pbPreview5, pbPreview6, pbPreview7, pbPreview8, pbPreview9 };
 
             pbPreview0.Image = plusImage;

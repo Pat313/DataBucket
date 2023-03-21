@@ -27,7 +27,7 @@ namespace DataBucket.Presenter
             selectedId = id;
         }
 
-        private async void FormModify_Load(object sender, EventArgs e)
+        private async void FormEdit_Load(object sender, EventArgs e)
         {
             cmbRepairman.DataSource = await conn.FillComboBox("worker.fullName");
             cmbConcomitant.BindingContext = new BindingContext();

@@ -1,24 +1,11 @@
-﻿using DataBucket.UI;
-using FontAwesome.Sharp;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using DataBucket._Base;
 
 namespace DataBucket.View
 {
     public partial class AccountingView : UserControl
     {
+        public static AccountingView Instance { get; } = new();
         private readonly Connection conn = Connection.Instance;
-
-        private static AccountingView instance;
-
-        public static AccountingView Instance => instance ?? (instance = new AccountingView());
 
         private readonly DateTime currentDate = DateTime.Today;
 
@@ -48,17 +35,20 @@ namespace DataBucket.View
             pgnAll.PagingEvent += PgnAll_PagingEvent;
             pgnDaily.PagingEvent += PgnDaily_PagingEvent;
             pgnMonthly.PagingEvent += PgnMonthly_PagingEvent;
+
+            dtpBeginDate.ValueChanged += dtpBeginDate_ValueChanged;
+            dtpEndDate.ValueChanged += dtpEndDate_ValueChanged;
         }
 
         //private void cmbWorker_SelectedIndexChanged(object sender, EventArgs e) { if (isRefreshing) btnRefresh.PerformClick(); else LoadNextPage(); }
-        private void cmbWorker_SelectedIndexChanged(object sender, EventArgs e) => btnRefresh.PerformClick(); 
+        private void cmbWorker_SelectedIndexChanged(object? sender, EventArgs e) => btnRefresh.PerformClick();
 
-        private async void btnRefresh_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object? sender, EventArgs e)
         {
-            /*long[] displayed = {
-                await conn.GetAccountingAll(cmbWorker, dtpBeginDate, dtpEndDate),
-                await conn.GetAccountingDaily(cmbWorker, dtpBeginDate, dtpEndDate),
-                await conn.GetAccountingMonthly(cmbWorker, dtpBeginDate, dtpEndDate)
+            /*Task<long>[] displayed = {
+                conn.GetAccountingAll(cmbWorker, dtpBeginDate, dtpEndDate),
+                conn.GetAccountingDaily(cmbWorker, dtpBeginDate, dtpEndDate),
+                conn.GetAccountingMonthly(cmbWorker, dtpBeginDate, dtpEndDate)
             };*/
 
             pgnAll.SetResults(conn.GetAccountingAll(cmbWorker, dtpBeginDate, dtpEndDate));
@@ -66,9 +56,9 @@ namespace DataBucket.View
             pgnMonthly.SetResults(conn.GetAccountingDaily(cmbWorker, dtpBeginDate, dtpEndDate));
             //pgnMonthly.TotalRows = await conn.GetAccountingMonthly(cmbWorker, dtpBeginDate, dtpEndDate);
 
-            await conn.FillAccountingAll(dgvAll, pgnAll.PageLimit, pgnAll.CurrentPage, cmbWorker, dtpBeginDate, dtpEndDate);
-            await conn.FillAccountingDaily(dgvDaily, pgnDaily.PageLimit, pgnDaily.CurrentPage, cmbWorker, dtpBeginDate, dtpEndDate);
-            await conn.FillAccountingMonthly(dgvMonthly, pgnMonthly.PageLimit, pgnMonthly.CurrentPage, cmbWorker, dtpBeginDate, dtpEndDate);
+            LoadNextPageAll();
+            LoadNextPageDaily();
+            LoadNextPageMonthly();
 
             if (dgvAll.Columns.Count > 0)
             {
@@ -87,9 +77,12 @@ namespace DataBucket.View
         private async void LoadNextPageMonthly() =>
             await conn.FillAccountingMonthly(dgvMonthly, pgnMonthly.PageLimit, pgnMonthly.CurrentPage, cmbWorker, dtpBeginDate, dtpEndDate);
 
-        private void PgnAll_PagingEvent(object sender, EventArgs e)     => LoadNextPageAll();
-        private void PgnDaily_PagingEvent(object sender, EventArgs e)   => LoadNextPageDaily();
-        private void PgnMonthly_PagingEvent(object sender, EventArgs e) => LoadNextPageMonthly();
+        private void PgnAll_PagingEvent(object? sender, EventArgs e) => LoadNextPageAll();
+        private void PgnDaily_PagingEvent(object? sender, EventArgs e) => LoadNextPageDaily();
+        private void PgnMonthly_PagingEvent(object? sender, EventArgs e) => LoadNextPageMonthly();
+
+        private void dtpBeginDate_ValueChanged(object? sender, EventArgs e) => btnRefresh.PerformClick();
+        private void dtpEndDate_ValueChanged(object? sender, EventArgs e) => btnRefresh.PerformClick();
 
         private void ResetDateSelectors(RadioButton rdb)
         {

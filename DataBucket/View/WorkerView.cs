@@ -1,24 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using DataBucket._Base;
 
-namespace DataBucket
+namespace DataBucket.View
 {
     public partial class WorkerView : UserControl
     {
-        private static WorkerView instance;
-
-        public static WorkerView Instance
-        {
-            get => instance ?? (instance = new WorkerView());
-        }
-
+        public static WorkerView Instance { get; } = new WorkerView();
         private readonly Connection conn = Connection.Instance;
 
         public WorkerView()

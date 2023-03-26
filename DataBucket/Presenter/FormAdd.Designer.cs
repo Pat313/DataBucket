@@ -50,6 +50,7 @@
             txtId = new TextBox();
             label3 = new Label();
             groupBox3 = new GroupBox();
+            imgPreview = new UI.ImagePreview();
             groupBox2 = new GroupBox();
             cbPaid = new CheckBox();
             label7 = new Label();
@@ -70,7 +71,6 @@
             label4 = new Label();
             txtAddress = new TextBox();
             btnBack = new Button();
-            imgPreview = new UI.ImagePreview();
             groupBox5.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -343,6 +343,14 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Csatolt képek";
             // 
+            // imgPreview
+            // 
+            imgPreview.Location = new Point(7, 38);
+            imgPreview.Margin = new Padding(0);
+            imgPreview.Name = "imgPreview";
+            imgPreview.Size = new Size(540, 60);
+            imgPreview.TabIndex = 0;
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(cbPaid);
@@ -370,10 +378,10 @@
             // 
             cbPaid.Appearance = Appearance.Button;
             cbPaid.AutoSize = true;
-            cbPaid.BackColor = Color.FromArgb(45, 30, 30);
+            cbPaid.BackColor = Color.FromArgb(60, 30, 30);
             cbPaid.CheckAlign = ContentAlignment.BottomCenter;
             cbPaid.FlatAppearance.BorderColor = Color.Gainsboro;
-            cbPaid.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 45, 30);
+            cbPaid.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 60, 30);
             cbPaid.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 70, 70);
             cbPaid.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             cbPaid.FlatStyle = FlatStyle.Flat;
@@ -402,10 +410,10 @@
             // 
             cbReceipt.Appearance = Appearance.Button;
             cbReceipt.AutoSize = true;
-            cbReceipt.BackColor = Color.FromArgb(45, 30, 30);
+            cbReceipt.BackColor = Color.FromArgb(60, 30, 30);
             cbReceipt.CheckAlign = ContentAlignment.BottomCenter;
             cbReceipt.FlatAppearance.BorderColor = Color.Gainsboro;
-            cbReceipt.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 45, 30);
+            cbReceipt.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 60, 30);
             cbReceipt.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 70, 70);
             cbReceipt.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             cbReceipt.FlatStyle = FlatStyle.Flat;
@@ -435,10 +443,10 @@
             // 
             cbTransaction.Appearance = Appearance.Button;
             cbTransaction.AutoSize = true;
-            cbTransaction.BackColor = Color.FromArgb(45, 30, 30);
+            cbTransaction.BackColor = Color.FromArgb(60, 30, 30);
             cbTransaction.CheckAlign = ContentAlignment.BottomCenter;
             cbTransaction.FlatAppearance.BorderColor = Color.Gainsboro;
-            cbTransaction.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 45, 30);
+            cbTransaction.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 60, 30);
             cbTransaction.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 70, 70);
             cbTransaction.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
             cbTransaction.FlatStyle = FlatStyle.Flat;
@@ -616,14 +624,6 @@
             btnBack.TabIndex = 92;
             btnBack.Text = "Vissza";
             btnBack.UseVisualStyleBackColor = false;
-            // 
-            // imagePreview1
-            // 
-            imgPreview.Location = new Point(7, 38);
-            imgPreview.Margin = new Padding(0);
-            imgPreview.Name = "imgPreview";
-            imgPreview.Size = new Size(540, 60);
-            imgPreview.TabIndex = 0;
             // 
             // FormAdd
             // 

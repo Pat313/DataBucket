@@ -1,21 +1,29 @@
 ﻿using System.Configuration;
 using System.Data;
+using System.Reflection;
 using MySql.Data.MySqlClient;
 
-namespace DataBucket
+namespace DataBucket._Base
 {
     public class Connection
     {
-        #region Connection & mapping
+        public static Connection Instance { get; } = new();
+
+        #region Establishing & terminating connection
         // connectionstring
         //private MySqlConnectionStringBuilder conString = new MySqlConnectionStringBuilder();
         private readonly MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con_mobil33acc"].ConnectionString);
+        /*MySqlConnectionStringBuilder builder = new();
+        builder.Server = "192.168.100.2";
+        builder.Database = "mobil33acc";
+        builder.UserID = "root";
+        builder.Password = string.Empty;
+        builder.SslMode = MySqlSslMode.Disabled;*/
         //private readonly MySqlConnection con = new MySqlConnection("server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none");
         //private readonly ImageManager imageManager = ImageManager.Instance;
 
-        private static Connection instance;
-
-        public static Connection Instance { get => instance ??= new Connection(); }
+        /*private static Connection? instance;
+        public static Connection Instance => instance ??= new Connection();*/
         //get => instance ?? (instance = new Connection());
         //set => connection = value;
 
@@ -23,6 +31,8 @@ namespace DataBucket
         {
             try { if (con.State != ConnectionState.Open) await con.OpenAsync(); }
             catch (Exception ex) { MessageBox.Show("Hiba csatlakozáskor!\n" + ex); }
+
+            
         }//);
 
         private async Task Close()
@@ -89,6 +99,76 @@ namespace DataBucket
                 $"WHERE date {dateQuery} " +
                 $"AND (repairmanID = (SELECT id FROM worker WHERE fullName LIKE '{cmb.Text}') " +
                 $"OR concomitantID = (SELECT id FROM worker WHERE fullName LIKE '{cmb.Text}'))",
+                con))
+                count = (long)await cmd.ExecuteScalarAsync();
+
+            await Close();
+            return count;
+        }
+
+        public async Task<long> GetAccountingAll(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
+        {
+            long count = 0;
+            await Connect();
+
+            using (MySqlCommand cmd = new MySqlCommand(
+                $"SELECT COUNT(*) FROM work AS w " +
+                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
+                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
+                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
+                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
+                con))
+                count = (long)await cmd.ExecuteScalarAsync();
+
+            await Close();
+            return count;
+        }
+
+        public async Task<long> GetAccountingDaily(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
+        {
+            long count = 0;
+            await Connect();
+
+            using (MySqlCommand cmd = new MySqlCommand(
+                $"SELECT COUNT(DISTINCT date) FROM work AS w " +
+                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
+                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
+                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
+                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
+                con))
+                count = (long)await cmd.ExecuteScalarAsync();
+
+            await Close();
+            return count;
+        }
+
+        public async Task<long> GetAccountingMonthly(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
+        {
+            long count = 0;
+            await Connect();
+
+            using (MySqlCommand cmd = new MySqlCommand(
+                $"SELECT COUNT(DISTINCT MONTH(date)) FROM work AS w " +
+                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
+                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
+                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
+                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
+                con))
+                count = (long)await cmd.ExecuteScalarAsync();
+
+            await Close();
+            return count;
+        }
+
+        public async Task<long> GetLiabilities(DateTimePicker date1, DateTimePicker date2, CheckBox chb)
+        {
+            long count = 0;
+            await Connect();
+
+            using (MySqlCommand cmd = new MySqlCommand(
+                $"SELECT COUNT(*) FROM work " +
+                $"WHERE (date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}') " +
+                $"AND transaction = 1 AND receipt = 1{(chb.Checked ? "" : " AND paid = 0")}",
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
@@ -193,60 +273,6 @@ namespace DataBucket
             await Close();
         }
 
-        public async Task<long> GetAccountingAll(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
-        {
-            long count = 0;
-            await Connect();
-
-            using (MySqlCommand cmd = new MySqlCommand(
-                $"SELECT COUNT(*) FROM work AS w " +
-                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
-                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
-                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
-                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
-                con))
-                count = (long)await cmd.ExecuteScalarAsync();
-
-            await Close();
-            return count;
-        }
-
-        public async Task<long> GetAccountingDaily(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
-        {
-            long count = 0;
-            await Connect();
-
-            using (MySqlCommand cmd = new MySqlCommand(
-                $"SELECT COUNT(DISTINCT date) FROM work AS w " +
-                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
-                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
-                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
-                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
-                con))
-                count = (long)await cmd.ExecuteScalarAsync();
-
-            await Close();
-            return count;
-        }
-
-        public async Task<long> GetAccountingMonthly(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
-        {
-            long count = 0;
-            await Connect();
-
-            using (MySqlCommand cmd = new MySqlCommand(
-                $"SELECT COUNT(DISTINCT MONTH(date)) FROM work AS w " +
-                $"INNER JOIN worker AS w1 ON w.repairmanID = w1.id " +
-                $"INNER JOIN worker AS w2 ON w.concomitantID = w2.id " +
-                $"WHERE (w1.fullName LIKE '{cmb.Text}' OR w2.fullName LIKE '{cmb.Text}') " +
-                $"AND (w.date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}')",
-                con))
-                count = (long)await cmd.ExecuteScalarAsync();
-
-            await Close();
-            return count;
-        }
-
         public async Task FillAccountingAll(DataGridView dg, byte limit, short page, ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
             await Connect();
@@ -318,14 +344,18 @@ namespace DataBucket
             await Close();
         }
 
-        public async Task FillLiabilities(DataGridView dg)
+        public async Task FillLiabilities(DataGridView dg, byte limit, short page, DateTimePicker date1, DateTimePicker date2, CheckBox chb)
         {
             await Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', " +
-                $"income AS 'Utalás összege', expense AS 'Össz. kiadás' FROM work " +
-                $"WHERE transaction = 1 AND receipt = 1 AND paid = 0",
+                $"income AS 'Utalás összege', expense AS 'Össz. kiadás', paid AS 'Utalás státusza' FROM work " +
+                $"WHERE transaction = 1 AND receipt = 1{(chb.Checked ? "" : " AND paid = 0")} " +
+                $"AND date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}' " +
+                $"ORDER BY date " +
+                $"LIMIT {limit} " +
+                $"OFFSET {(page - 1) * limit}",
                 con))
             using (DataTable dt = new DataTable())
             {

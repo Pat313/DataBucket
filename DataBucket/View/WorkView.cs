@@ -1,30 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
+using DataBucket._Base;
 using DataBucket.Presenter;
 using DataBucket.UI;
+using static DataBucket.UI.DrawingFunctions.AlterView;
 
 namespace DataBucket.View
 {
     public partial class WorkView : UserControl
     {
+        public static WorkView Instance { get; } = new();
         private readonly Connection conn = Connection.Instance;
 
-        private static WorkView instance;
-
-        public static WorkView Instance => instance ??= new WorkView();
+        /*private static WorkView? instance;
+        public static WorkView Instance => instance ??= new WorkView();*/
 
         private CheckBox checkBoxHeader;
 
@@ -44,6 +34,7 @@ namespace DataBucket.View
             cmbRepairman.DataSource = list;
             cmbConcomitant.BindingContext = new BindingContext();
             cmbConcomitant.DataSource = list;
+            SetDoubleBuffered(dgvWork);
 
             cldWork.DateSelected += cldWork_DateSelected;
             cmbRepairman.SelectedIndexChanged += cmbRepairman_SelectedIndexChanged;
@@ -91,14 +82,12 @@ namespace DataBucket.View
         }
 
         //private void addForm_Closed(object sender, FormClosedEventArgs e) => btnRefresh.PerformClick();
-
         //private void editForm_Closed(object sender, FormClosedEventArgs e) => btnRefresh.PerformClick();
+        private void cldWork_DateSelected(object? sender, DateRangeEventArgs e) => btnRefresh.PerformClick();
+        private void cmbRepairman_SelectedIndexChanged(object? sender, EventArgs e) => btnRefresh.PerformClick();
+        private void cmbConcomitant_SelectedIndexChanged(object? sender, EventArgs e) => btnRefresh.PerformClick();
 
-        private void cldWork_DateSelected(object sender, DateRangeEventArgs e) => btnRefresh.PerformClick();
-        private void cmbRepairman_SelectedIndexChanged(object sender, EventArgs e) => btnRefresh.PerformClick();
-        private void cmbConcomitant_SelectedIndexChanged(object sender, EventArgs e) => btnRefresh.PerformClick();
-
-        private async void btnRefresh_Click(object sender, EventArgs e)
+        private async void btnRefresh_Click(object? sender, EventArgs e)
         {
             if (cldWork.SelectionRange == null)
             {
@@ -153,15 +142,15 @@ namespace DataBucket.View
                 await conn.FillWorkByWorker(dgvWork, pgnWork.PageLimit, pgnWork.CurrentPage, cldWork, cmbRepairman.SelectedIndex > 0 ? cmbRepairman : cmbConcomitant /*?? cmbRepairman*/);
         }
 
-        private void PgnWork_PagingEvent(object sender, EventArgs e) => LoadPage();
+        private void PgnWork_PagingEvent(object? sender, EventArgs e) => LoadPage();
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void btnAdd_Click(object? sender, EventArgs e)
         {
             if (cldWork.SelectionRange.Start != cldWork.SelectionRange.End)
             {
                 cldWork.SelectionStart = DateTime.Today;
                 cldWork.SelectionEnd = DateTime.Today;
-                MessageBox.Show("Nem adtál meg dátumot, így a mai nap lett automatikusan kiválasztva", "Sikertelen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nem adtál meg dátumot, így a mai nap lett automatikusan kiválasztva", "Információ", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             using (FormAdd formAdd = new FormAdd())
@@ -183,16 +172,16 @@ namespace DataBucket.View
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object? sender, EventArgs e)
         {
             if (dgvWork.SelectedRows.Count == 0)
             {
-                MessageBox.Show("A szerkesztéshez előbb jelölj ki egy sort", "Sikertelen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("A szerkesztéshez előbb jelölj ki egy sort", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             else if (dgvWork.SelectedRows.Count > 1)
             {
-                MessageBox.Show("Egyszerre nem szerkeszthetsz több munkát", "Sikertelen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Egyszerre nem szerkeszthetsz több munkát", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -212,11 +201,11 @@ namespace DataBucket.View
             }
         }
 
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private async void btnDelete_Click(object? sender, EventArgs e)
         {
             if (dgvWork.SelectedRows.Count == 0)
             {
-                MessageBox.Show("A törléshez előbb jelölj ki egy vagy több sort", "Sikertelen", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("A törléshez előbb jelölj ki egy vagy több sort", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -238,7 +227,7 @@ namespace DataBucket.View
             }
         }
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object? sender, EventArgs e)
         {
             if (dgvWork.SelectedRows.Count == 0 || txtQuery.TextLength == 0)
                 return;
@@ -252,16 +241,16 @@ namespace DataBucket.View
             SetStatusColor();
         }
 
-        private void dgvWork_Sorted(object sender, EventArgs e)
+        private void dgvWork_Sorted(object? sender, EventArgs e)
         {
             //SetStatusColor();
         }
 
-        private void btnImages_Click(object sender, EventArgs e)
+        private void btnImages_Click(object? sender, EventArgs e)
         {
             if (dgvWork.SelectedRows.Count != 1)
             {
-                MessageBox.Show("A csatolt képek betöltéséhez jelölj ki egy adott munkát");
+                MessageBox.Show("A csatolt képek betöltéséhez jelölj ki egy adott munkát", "Figyelmeztetés", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -274,7 +263,7 @@ namespace DataBucket.View
 
             //flpImages.Controls.Clear();
             flpImages.SuspendLayout();
-            flpImages.Controls.AddRange(dgvWork.SelectedCells[13].Value.ToString().Split('|')
+            flpImages.Controls.AddRange(dgvWork.SelectedCells[13].Value.ToString()?.Split('|')
                 .Select(x => new SignalPicture { ImageLocation = Path.Combine(Settings.signalPath, x + ".jpeg") }).ToArray());
             flpImages.ResumeLayout();
 
@@ -283,12 +272,12 @@ namespace DataBucket.View
                     pic.MouseClickEvent += SignalPicture_MouseClick;
         }
 
-        private void dgvWork_MouseClick(object sender, MouseEventArgs e)
+        private void dgvWork_MouseClick(object? sender, MouseEventArgs e)
         {
             //if (e.Button == MouseButtons.Right) dgvWork.ClearSelection();
         }
 
-        private void dgvWork_MouseDown(object sender, MouseEventArgs e)
+        private void dgvWork_MouseDown(object? sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -301,7 +290,7 @@ namespace DataBucket.View
             }
         }
 
-        private void txtQuery_KeyDown(object sender, KeyEventArgs e)
+        private void txtQuery_KeyDown(object? sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -328,24 +317,19 @@ namespace DataBucket.View
             }
         }
 
-        private void SignalPicture_MouseClick(object sender, EventArgs e)
+        private void SignalPicture_MouseClick(object? sender, EventArgs e)
         {
             foreach (SignalPicture pic in flpImages.Controls.OfType<SignalPicture>())
-            {
-                if (pic == (SignalPicture)sender)
-                    pic.BorderColor = Color.FromArgb(140, 100, 180);
-                else
-                    pic.BorderColor = Color.FromArgb(70, 70, 70);
-            }
+                pic.BorderColor = pic == (SignalPicture?)sender ? Color.FromArgb(140, 100, 180) : Color.FromArgb(70, 70, 70);
         }
 
-        private void checkBox_CheckedChanged(object sender, EventArgs e)
+        private void checkBox_CheckedChanged(object? sender, EventArgs e)
         {
             dgvWork.EndEdit();
 
             foreach (DataGridViewRow row in dgvWork.Rows)
                 if (row.Cells[0] is DataGridViewCheckBoxCell checkBoxCell)
-                    checkBoxCell.Value = (sender as CheckBox).Checked;
+                    checkBoxCell.Value = ((CheckBox?)sender)?.Checked ?? false;
         }
 
         private bool IsHeaderChecked()
@@ -354,7 +338,7 @@ namespace DataBucket.View
 
             foreach (DataGridViewRow row in dgvWork.Rows)
             {
-                DataGridViewCheckBoxCell checkBoxCell = row.Cells[0] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell checkBoxCell = (DataGridViewCheckBoxCell)row.Cells[0];
                 //if (checkBoxCell != null)
                 if (!Convert.ToBoolean(checkBoxCell?.Value))
                 {
@@ -366,7 +350,7 @@ namespace DataBucket.View
             return isChecked;
         }
 
-        private void dgvWork_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void dgvWork_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
             if (dgvWork.Columns.Count == 13) return;
 
@@ -377,10 +361,9 @@ namespace DataBucket.View
 
                 if (checkBoxHeader == null)
                 {
-                    checkBoxHeader = new CheckBox();
-                    checkBoxHeader.Size = new Size(16, 16);
+                    checkBoxHeader = new CheckBox { Size = new Size(16, 16) };
                     checkBoxHeader.CheckedChanged += new EventHandler(checkBox_CheckedChanged);
-                    ((DataGridView)sender).Controls.Add(checkBoxHeader);
+                    ((DataGridView?)sender)?.Controls.Add(checkBoxHeader);
                 }
 
                 checkBoxHeader.Checked = IsHeaderChecked();
@@ -390,74 +373,15 @@ namespace DataBucket.View
                 e.Handled = true;
             }
 
-            DrawBadge(e, 10, "Utalás", "Készpénz",
-                Color.FromArgb(50, 150, 150), Color.FromArgb(150, 150, 50),
-                Color.FromArgb(150, 230, 230), Color.FromArgb(230, 230, 150));
-            DrawBadge(e, 11, "Van számla", "Nincs számla",
-                Color.FromArgb(50, 50, 150), Color.FromArgb(150, 50, 150),
-                Color.FromArgb(150, 150, 230), Color.FromArgb(230, 150, 230));
-            DrawBadge(e, 12, "Fizetett", "Nem fizetett",
-                Color.FromArgb(50, 150, 50), Color.FromArgb(150, 50, 50),
-                Color.FromArgb(150, 230, 150), Color.FromArgb(230, 150, 130));
+            dgvWork.DrawBadge(e, 10, "Utalás", "Készpénz",
+                Color.FromArgb(80, 130, 130), Color.FromArgb(130, 130, 80));
+            dgvWork.DrawBadge(e, 11, "Van számla", "Nincs számla",
+                Color.FromArgb(80, 80, 130), Color.FromArgb(130, 80, 130));
+            dgvWork.DrawBadge(e, 12, "Fizetett", "Nem fizetett",
+                Color.FromArgb(80, 130, 80), Color.FromArgb(130, 80, 80));
         }
 
-        private void DrawBadge(DataGridViewCellPaintingEventArgs e, int columnIndex, string trueText, string falseText, Color trueBack, Color falseBack, Color trueFont, Color falseFont)
-        {
-            if (e.ColumnIndex == columnIndex && e.RowIndex >= 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All & ~DataGridViewPaintParts.ContentBackground);
-
-                var val = e.Value as bool?;
-                if (val.HasValue)
-                {
-                    var badgeText = val.Value ? trueText : falseText;
-                    var badgeBackColor = val.Value ? trueBack : falseBack;
-                    var badgeForeColor = val.Value ? trueFont : falseFont;
-                    var badgeFont = new Font("Calibri", 14f, FontStyle.Regular);
-                    var cornerRadius = 20;
-
-                    var textWidth = TextRenderer.MeasureText(badgeText, badgeFont).Width;
-                    var badgeHeight = 40;
-
-                    var badgeRect = new Rectangle(e.CellBounds.X + e.CellBounds.Width / 2 - textWidth / 2, e.CellBounds.Y + e.CellBounds.Height / 2 - badgeHeight / 2, textWidth, badgeHeight);
-                    //var badgeRect = new Rectangle(e.CellBounds.X, e.CellBounds.Y + e.CellBounds.Height / 2 - badgeHeight / 2, textWidth, badgeHeight);
-
-                    using (var path = GetRoundedRectPath(badgeRect, cornerRadius))
-                    {
-                        using (var brush = new SolidBrush(badgeBackColor))
-                        {
-                            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                            e.Graphics.FillPath(brush, path);
-                        }
-                        using (var brush = new SolidBrush(badgeForeColor))
-                        {
-                            var format = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-                            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-                            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-                            e.Graphics.DrawString(badgeText, badgeFont, brush, badgeRect, format);
-                        }
-                    }
-                }
-                e.Handled = true;
-            }
-        }
-
-        private GraphicsPath GetRoundedRectPath(Rectangle rect, int radius)
-        {
-            var path = new GraphicsPath();
-            path.AddLine(rect.Left + radius, rect.Top, rect.Right - radius, rect.Top);
-            path.AddArc(rect.Right - radius, rect.Top, radius, radius, 270, 90);
-            path.AddLine(rect.Right, rect.Top + radius, rect.Right, rect.Bottom - radius);
-            path.AddArc(rect.Right - radius, rect.Bottom - radius, radius, radius, 0, 90);
-            path.AddLine(rect.Right - radius, rect.Bottom, rect.Left + radius, rect.Bottom);
-            path.AddArc(rect.Left, rect.Bottom - radius, radius, radius, 90, 90);
-            path.AddLine(rect.Left, rect.Bottom - radius, rect.Left, rect.Top + radius);
-            path.AddArc(rect.Left, rect.Top, radius, radius, 180, 90);
-            path.CloseFigure();
-            return path;
-        }
-
-        private void dgvWork_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void dgvWork_ColumnHeaderMouseClick(object? sender, DataGridViewCellMouseEventArgs e)
         {
             /*DataGridViewColumn clickedColumn = dgvWork.Columns[e.ColumnIndex];
 
@@ -485,7 +409,7 @@ namespace DataBucket.View
             }*/
         }
 
-        private void btnRelaxed_Click(object sender, EventArgs e)
+        private void btnRelaxed_Click(object? sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvWork.Rows) row.Height = 80;
             dgvWork.RowTemplate.Height = 80;
@@ -494,7 +418,7 @@ namespace DataBucket.View
             btnCompact.IconColor = Color.FromArgb(160, 160, 160);
         }
 
-        private void btnRegular_Click(object sender, EventArgs e)
+        private void btnRegular_Click(object? sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvWork.Rows) row.Height = 65;
             dgvWork.RowTemplate.Height = 65;
@@ -503,7 +427,7 @@ namespace DataBucket.View
             btnCompact.IconColor = Color.FromArgb(160, 160, 160);
         }
 
-        private void btnCompact_Click(object sender, EventArgs e)
+        private void btnCompact_Click(object? sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dgvWork.Rows) row.Height = 50;
             dgvWork.RowTemplate.Height = 50;
@@ -512,7 +436,7 @@ namespace DataBucket.View
             btnRegular.IconColor = Color.FromArgb(160, 160, 160);
         }
 
-        private void dgvWork_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        private void dgvWork_DataBindingComplete(object? sender, DataGridViewBindingCompleteEventArgs e)
         {
             /*MessageBox.Show("Test");
             BadgeColumn badgeColumn = new BadgeColumn();
@@ -536,12 +460,12 @@ namespace DataBucket.View
             }*/
         }
 
-        private void dgvWork_SizeChanged(object sender, EventArgs e)
+        private void dgvWork_SizeChanged(object? sender, EventArgs e)
         {
             if (dgvWork.Columns.Count > 0) dgvWork.Columns[0].Width = 30;
         }
 
-        private void tipWork_Draw(object sender, DrawToolTipEventArgs e)
+        private void tipWork_Draw(object? sender, DrawToolTipEventArgs e)
         {
             //const int iconSize = 16;
             //var iconRect = new Rectangle(e.Bounds.Left + 2, e.Bounds.Top + 2, iconSize, iconSize);

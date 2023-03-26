@@ -65,7 +65,7 @@ namespace DataBucket.Presenter
             
             UserPreferenceChanged = new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
-            this.Disposed += new EventHandler(Form_Disposed);
+            this.Disposed += Form_Disposed;
 
             LoadViews();
 
@@ -100,9 +100,11 @@ namespace DataBucket.Presenter
                 LoadTheme();
             }
         }
-        private void Form_Disposed(object sender, EventArgs e)
+
+        private void Form_Disposed(object? sender, EventArgs e)
         {
             SystemEvents.UserPreferenceChanged -= UserPreferenceChanged;
+
         }
 
         private void AnimationTimer_Tick(object sender, EventArgs e)

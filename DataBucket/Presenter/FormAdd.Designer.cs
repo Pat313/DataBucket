@@ -94,7 +94,6 @@
             btnSave.TabIndex = 82;
             btnSave.Text = "Mentés";
             btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnOK_Click;
             // 
             // groupBox5
             // 

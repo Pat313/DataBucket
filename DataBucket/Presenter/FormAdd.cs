@@ -39,13 +39,15 @@ namespace DataBucket.Presenter
             cbPaid.CheckedChanged += CheckBox_CheckedChanged;
 
             txtInvoice.TextChanged += txtInvoice_TextChanged;
+
+            btnSave.Click += btnSave_Click;
         }
 
         public DateTime SelectedDate { set => dtpDate.Value = value; }
         public int SelectedRepairman { set => selectedRepairman = value; }
         public int SelectedConcomitant { set => selectedConcomitant = value; }
 
-        private async void btnOK_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object? sender, EventArgs e)
         {
             try
             {

@@ -553,14 +553,14 @@ namespace DataBucket._Base
             await Close();
         }
 
-        public async Task UpdateWork(DateTime date, string name, string address, string phone, string invoice, int income, int material,
-            int fuel, int other, bool transaction, bool receipt, bool paid, string imagerefs, string repairman, string concomitant, int id)
+        public async Task UpdateWork(DateTime date, string name, string address, string phone, string note, string invoice, int income, int material,
+            int fuel, int other, bool transaction, bool paid, string imagerefs, string repairman, string concomitant, int id)
         {
             await Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
-                $"UPDATE work SET date = '{date:yyyy-MM-dd}', name = '{name}', address = '{address}', phone = '{phone}', invoice = '{invoice}', income = {income}, " +
-                $"material = {material}, fuel = {fuel}, other = {other}, transaction = {transaction}, receipt = {receipt}, paid = {paid}, imagerefs = '{imagerefs}', " +
+                $"UPDATE work SET date = '{date:yyyy-MM-dd}', name = '{name}', address = '{address}', phone = '{phone}', note = '{note}', invoice = '{invoice}', " +
+                $"income = {income}, material = {material}, fuel = {fuel}, other = {other}, transaction = {transaction}, paid = {paid}, imagerefs = '{imagerefs}', " +
                 $"repairmanID = (SELECT DISTINCT id FROM worker WHERE fullName LIKE '{repairman}'), " +
                 $"concomitantID = (SELECT DISTINCT id FROM worker WHERE fullName LIKE '{concomitant}') " +
                 $"WHERE id = {id}",

@@ -41,6 +41,10 @@ namespace DataBucket.Presenter
             //cbReceipt.CheckedChanged += CheckBox_CheckedChanged;
             cbPaid.CheckedChanged += CheckBox_CheckedChanged;
 
+            txtInvoice.TextChanged += txtInvoice_TextChanged;
+
+            btnSave.Click += btnSave_Click;
+
             object[] data = await conn.LoadAllById(selectedId);
 
             txtId.Text = data[0].ToString();
@@ -48,20 +52,21 @@ namespace DataBucket.Presenter
             txtName.Text = (string)data[2];
             txtAddress.Text = (string)data[3];
             txtPhone.Text = (string)data[4];
-            txtInvoice.Text = (string)data[5];
-            txtIncome.Text = data[6].ToString();
-            txtMaterial.Text = data[7].ToString();
-            txtFuel.Text = data[8].ToString();
-            txtOther.Text = data[9].ToString();
-            txtExpense.Text = data[10].ToString();
-            cbTransaction.Checked = (bool)data[11];
-            //cbReceipt.Checked = (bool)data[12];
-            cbPaid.Checked = (bool)data[13];
-            txtDelivered.Text = data[14].ToString();
-            txtFinal.Text = data[15].ToString();
-            loadedRefs = data[16].ToString().Split('|').ToList();
-            cmbRepairman.SelectedIndex = (int)data[17] - 1;
-            cmbConcomitant.SelectedIndex = (int)data[18] - 1;
+            txtNote.Text = (string)data[5];
+            txtInvoice.Text = (string)data[6];
+            txtIncome.Text = data[7].ToString();
+            txtMaterial.Text = data[8].ToString();
+            txtFuel.Text = data[9].ToString();
+            txtOther.Text = data[10].ToString();
+            txtExpense.Text = data[11].ToString();
+            cbTransaction.Checked = (bool)data[12];
+            //cbReceipt.Checked = (bool)data[13];
+            cbPaid.Checked = (bool)data[14];
+            txtDelivered.Text = data[15].ToString();
+            txtFinal.Text = data[16].ToString();
+            loadedRefs = data[17].ToString().Split('|').ToList();
+            cmbRepairman.SelectedIndex = (int)data[18] - 1;
+            cmbConcomitant.SelectedIndex = (int)data[19] - 1;
 
             // image refs
             for (int i = 0; i < loadedRefs.Count; i++)
@@ -72,7 +77,7 @@ namespace DataBucket.Presenter
             imgPreview.PictureBoxes[loadedRefs.Count].Image = plusImage;
         }
 
-        private async void btnOK_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object? sender, EventArgs e)
         {
             try
             {
@@ -117,9 +122,9 @@ namespace DataBucket.Presenter
                 }
                 else result = string.Join("|", loadedRefs);
 
-                /*await conn.UpdateWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtInvoice.Text, Convert.ToInt32(txtIncome.Text),
-                    Convert.ToInt32(txtMaterial.Text), Convert.ToInt32(txtFuel.Text), Convert.ToInt32(txtOther.Text), cbPaid.Checked, cbReceipt.Checked,
-                    cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text, selectedId);*/
+                await conn.UpdateWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtNote.Text, txtInvoice.Text,
+                    GetMoneyValue(txtIncome), GetMoneyValue(txtMaterial), GetMoneyValue(txtFuel), GetMoneyValue(txtOther),
+                    cbTransaction.Checked, cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text, selectedId);
             }
             catch (Exception ex)
             {
@@ -127,7 +132,15 @@ namespace DataBucket.Presenter
             }
         }
 
-        private void CheckBox_CheckedChanged(object sender, EventArgs e) =>
-            (sender as CheckBox).Image = (sender as CheckBox).Checked ? Properties.Resources.checkmark3 : Properties.Resources.crossmark3;
+        private int GetMoneyValue(TextBox tb) => int.TryParse(tb.Text, out int res) ? res : 0;
+
+        private void CheckBox_CheckedChanged(object? sender, EventArgs e) =>
+            ((CheckBox)sender).Image = ((CheckBox)sender).Checked ? Properties.Resources.checkmark3 : Properties.Resources.crossmark3;
+
+        private void txtInvoice_TextChanged(object? sender, EventArgs e)
+        {
+            if (txtInvoice.Text.Length > 0) lblReceipt.Text = "Számla: van";
+            else lblReceipt.Text = "Számla: nincs";
+        }
     }
 }

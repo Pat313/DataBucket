@@ -655,7 +655,7 @@
             Margin = new Padding(3, 4, 3, 4);
             Name = "FormEdit";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Kliens Módosítása";
+            Text = "Munka Módosítása";
             Load += FormEdit_Load;
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();

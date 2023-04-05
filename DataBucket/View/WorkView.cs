@@ -256,15 +256,12 @@ namespace DataBucket.View
 
             if (flpImages.Controls.Count != 0)
                 foreach (SignalPicture pic in flpImages.Controls.OfType<SignalPicture>())
-                {
                     pic.MouseClickEvent -= SignalPicture_MouseClick;
-                    pic.Dispose();
-                }
-
-            //flpImages.Controls.Clear();
+                
+            flpImages.Controls.Clear();
             flpImages.SuspendLayout();
             flpImages.Controls.AddRange(dgvWork.SelectedCells[12].Value.ToString()?.Split('|')
-                .Select(x => new SignalPicture { ImageLocation = Path.Combine(Settings.signalPath, x + ".jpeg") }).ToArray());
+                .Select(x => new SignalPicture { ImageLocation = Path.Combine(Settings.signalPath, $"{x}.jpeg") }).ToArray());
             flpImages.ResumeLayout();
 
             if (flpImages.Controls.Count != 0)

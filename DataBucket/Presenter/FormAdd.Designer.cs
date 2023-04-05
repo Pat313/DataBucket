@@ -52,9 +52,9 @@
             groupBox3 = new GroupBox();
             imgPreview = new UI.ImagePreview();
             groupBox2 = new GroupBox();
+            lblReceipt = new Label();
             cbPaid = new CheckBox();
             label7 = new Label();
-            cbReceipt = new CheckBox();
             txtIncome = new TextBox();
             cbTransaction = new CheckBox();
             txtMaterial = new TextBox();
@@ -64,10 +64,12 @@
             label9 = new Label();
             label10 = new Label();
             groupBox1 = new GroupBox();
+            label2 = new Label();
+            txtPhone = new TextBox();
             txtName = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            txtPhone = new TextBox();
+            txtNote = new TextBox();
             label4 = new Label();
             txtAddress = new TextBox();
             btnBack = new Button();
@@ -235,7 +237,7 @@
             label1.Name = "label1";
             label1.Size = new Size(316, 58);
             label1.TabIndex = 22;
-            label1.Text = "Hozzáadás esetén az itt látható adatok csak becsült értékek";
+            label1.Text = "Hozzáadás esetén az itt látható adatok üresek lehetnek";
             label1.TextAlign = ContentAlignment.TopCenter;
             // 
             // label17
@@ -353,9 +355,9 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(lblReceipt);
             groupBox2.Controls.Add(cbPaid);
             groupBox2.Controls.Add(label7);
-            groupBox2.Controls.Add(cbReceipt);
             groupBox2.Controls.Add(txtIncome);
             groupBox2.Controls.Add(cbTransaction);
             groupBox2.Controls.Add(txtMaterial);
@@ -374,6 +376,16 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Pénzügy";
             // 
+            // lblReceipt
+            // 
+            lblReceipt.AutoSize = true;
+            lblReceipt.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblReceipt.Location = new Point(2, 196);
+            lblReceipt.Name = "lblReceipt";
+            lblReceipt.Size = new Size(136, 28);
+            lblReceipt.TabIndex = 106;
+            lblReceipt.Text = "Számla: nincs";
+            // 
             // cbPaid
             // 
             cbPaid.Appearance = Appearance.Button;
@@ -388,7 +400,7 @@
             cbPaid.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
             cbPaid.ForeColor = Color.Gainsboro;
             cbPaid.Image = Properties.Resources.crossmark3;
-            cbPaid.Location = new Point(7, 185);
+            cbPaid.Location = new Point(6, 142);
             cbPaid.Name = "cbPaid";
             cbPaid.Size = new Size(111, 38);
             cbPaid.TabIndex = 105;
@@ -405,28 +417,6 @@
             label7.Size = new Size(72, 24);
             label7.TabIndex = 12;
             label7.Text = "Bevétel";
-            // 
-            // cbReceipt
-            // 
-            cbReceipt.Appearance = Appearance.Button;
-            cbReceipt.AutoSize = true;
-            cbReceipt.BackColor = Color.FromArgb(60, 30, 30);
-            cbReceipt.CheckAlign = ContentAlignment.BottomCenter;
-            cbReceipt.FlatAppearance.BorderColor = Color.Gainsboro;
-            cbReceipt.FlatAppearance.CheckedBackColor = Color.FromArgb(30, 60, 30);
-            cbReceipt.FlatAppearance.MouseDownBackColor = Color.FromArgb(70, 70, 70);
-            cbReceipt.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
-            cbReceipt.FlatStyle = FlatStyle.Flat;
-            cbReceipt.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            cbReceipt.ForeColor = Color.Gainsboro;
-            cbReceipt.Image = Properties.Resources.crossmark3;
-            cbReceipt.Location = new Point(6, 140);
-            cbReceipt.Name = "cbReceipt";
-            cbReceipt.Size = new Size(107, 38);
-            cbReceipt.TabIndex = 104;
-            cbReceipt.Text = "Számla";
-            cbReceipt.TextImageRelation = TextImageRelation.ImageBeforeText;
-            cbReceipt.UseVisualStyleBackColor = false;
             // 
             // txtIncome
             // 
@@ -529,10 +519,12 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(txtPhone);
             groupBox1.Controls.Add(txtName);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(label5);
-            groupBox1.Controls.Add(txtPhone);
+            groupBox1.Controls.Add(txtNote);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(txtAddress);
             groupBox1.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
@@ -545,6 +537,28 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Ügyfél";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(353, 96);
+            label2.Name = "label2";
+            label2.Size = new Size(113, 24);
+            label2.TabIndex = 11;
+            label2.Text = "Telefonszám";
+            // 
+            // txtPhone
+            // 
+            txtPhone.BackColor = Color.FromArgb(35, 35, 35);
+            txtPhone.BorderStyle = BorderStyle.FixedSingle;
+            txtPhone.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtPhone.ForeColor = Color.Gainsboro;
+            txtPhone.Location = new Point(357, 123);
+            txtPhone.Margin = new Padding(3, 3, 3, 10);
+            txtPhone.Name = "txtPhone";
+            txtPhone.Size = new Size(197, 32);
+            txtPhone.TabIndex = 12;
+            // 
             // txtName
             // 
             txtName.BackColor = Color.FromArgb(35, 35, 35);
@@ -554,18 +568,18 @@
             txtName.Location = new Point(6, 54);
             txtName.Margin = new Padding(3, 3, 3, 10);
             txtName.Name = "txtName";
-            txtName.Size = new Size(345, 32);
+            txtName.Size = new Size(291, 32);
             txtName.TabIndex = 6;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(353, 27);
+            label6.Location = new Point(303, 27);
             label6.Name = "label6";
-            label6.Size = new Size(113, 24);
+            label6.Size = new Size(105, 24);
             label6.TabIndex = 9;
-            label6.Text = "Telefonszám";
+            label6.Text = "Megjegyzés";
             // 
             // label5
             // 
@@ -577,17 +591,17 @@
             label5.TabIndex = 7;
             label5.Text = "Név";
             // 
-            // txtPhone
+            // txtNote
             // 
-            txtPhone.BackColor = Color.FromArgb(35, 35, 35);
-            txtPhone.BorderStyle = BorderStyle.FixedSingle;
-            txtPhone.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            txtPhone.ForeColor = Color.Gainsboro;
-            txtPhone.Location = new Point(357, 54);
-            txtPhone.Margin = new Padding(3, 3, 3, 10);
-            txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(197, 32);
-            txtPhone.TabIndex = 10;
+            txtNote.BackColor = Color.FromArgb(35, 35, 35);
+            txtNote.BorderStyle = BorderStyle.FixedSingle;
+            txtNote.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtNote.ForeColor = Color.Gainsboro;
+            txtNote.Location = new Point(303, 54);
+            txtNote.Margin = new Padding(3, 3, 3, 10);
+            txtNote.Name = "txtNote";
+            txtNote.Size = new Size(251, 32);
+            txtNote.TabIndex = 10;
             // 
             // label4
             // 
@@ -608,7 +622,7 @@
             txtAddress.Location = new Point(6, 123);
             txtAddress.Margin = new Padding(3, 3, 3, 10);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(548, 32);
+            txtAddress.Size = new Size(345, 32);
             txtAddress.TabIndex = 4;
             // 
             // btnBack
@@ -692,14 +706,16 @@
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.CheckBox cbPaid;
-        private System.Windows.Forms.CheckBox cbReceipt;
         private System.Windows.Forms.CheckBox cbTransaction;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnBack;
+        private Label lblReceipt;
+        private Label label2;
+        private TextBox txtPhone;
     }
 }

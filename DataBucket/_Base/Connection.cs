@@ -185,8 +185,8 @@ namespace DataBucket._Base
             await Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
-                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
-                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', receipt AS 'Számlázás', paid AS 'Törlesztés', imagerefs FROM work " +
+                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
+                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', imagerefs FROM work " +
                 $"WHERE date {dateQuery} " +
                 $"ORDER BY date " +
                 $"LIMIT {limit} " +
@@ -210,8 +210,8 @@ namespace DataBucket._Base
             await Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
-                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
-                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', receipt AS 'Számlázás', paid AS 'Törlesztés', imagerefs FROM work " +
+                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
+                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', imagerefs FROM work " +
                 $"WHERE date {dateQuery} " +
                 $"AND ((repairmanID = (SELECT id FROM worker WHERE fullName LIKE '{cmb1.Text}') " +
                 $"AND concomitantID = (SELECT id FROM worker WHERE fullName LIKE '{cmb2.Text}')) " +
@@ -239,8 +239,8 @@ namespace DataBucket._Base
             await Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
-                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
-                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', receipt AS 'Számlázás', paid AS 'Törlesztés', imagerefs FROM work " +
+                $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
+                $"fuel AS 'Üzemanyag', other AS 'Egyéb kiadás', transaction AS 'Fizetésmód', imagerefs FROM work " +
                 $"WHERE date {dateQuery} " +
                 $"AND (repairmanID = (SELECT id FROM worker WHERE fullName LIKE '{cmb.Text}') " +
                 $"OR concomitantID = (SELECT id FROM worker WHERE fullName LIKE '{cmb.Text}')) " +
@@ -520,16 +520,16 @@ namespace DataBucket._Base
             await Close();
         }
 
-        public async Task InsertWork(DateTime date, string name, string address, string phone, string invoice, int income, int material, 
-            int fuel, int other, bool transaction, bool receipt, bool paid, string imagerefs, string repairman, string concomitant)
+        public async Task InsertWork(DateTime date, string name, string address, string phone, string note, string invoice, int income, int material, 
+            int fuel, int other, bool transaction, bool paid, string imagerefs, string repairman, string concomitant)
         {
             await Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
-                $"INSERT INTO work (date, name, address, phone, invoice, income, material, fuel, other, transaction, " +
-                $"receipt, paid, imagerefs, repairmanID, concomitantID) " +
-                $"VALUES ('{date:yyyy-MM-dd}', '{name}', '{address}', '{phone}', '{invoice}', {income}, {material}, {fuel}, {other}, " +
-                $"{transaction}, {receipt}, {paid}, '{imagerefs}', " +
+                $"INSERT INTO work (date, name, address, phone, note, invoice, income, material, fuel, other, " +
+                $"transaction, paid, imagerefs, repairmanID, concomitantID) " +
+                $"VALUES ('{date:yyyy-MM-dd}', '{name}', '{address}', '{phone}', '{note}', '{invoice}', {income}, {material}, {fuel}, {other}, " +
+                $"{transaction}, {paid}, '{imagerefs}', " +
                 $"(SELECT DISTINCT id FROM worker WHERE fullName LIKE '{repairman}'), " +
                 $"(SELECT DISTINCT id FROM worker WHERE fullName LIKE '{concomitant}'))",
                 con))

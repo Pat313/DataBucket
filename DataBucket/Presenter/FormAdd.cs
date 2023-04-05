@@ -36,8 +36,9 @@ namespace DataBucket.Presenter
             foreach (Control c in imgPreview.Controls.OfType<PictureBox>()) c.Size = new Size(60, 60);
 
             cbTransaction.CheckedChanged += CheckBox_CheckedChanged;
-            cbReceipt.CheckedChanged += CheckBox_CheckedChanged;
             cbPaid.CheckedChanged += CheckBox_CheckedChanged;
+
+            txtInvoice.TextChanged += txtInvoice_TextChanged;
         }
 
         public DateTime SelectedDate { set => dtpDate.Value = value; }
@@ -82,9 +83,9 @@ namespace DataBucket.Presenter
 
                 string result = string.Join("|", imagerefs);
 
-                await conn.InsertWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtInvoice.Text,
+                await conn.InsertWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtNote.Text, txtInvoice.Text,
                     Convert.ToInt32(txtIncome.Text), Convert.ToInt32(txtMaterial.Text), Convert.ToInt32(txtFuel.Text), Convert.ToInt32(txtOther.Text),
-                    cbTransaction.Checked, cbReceipt.Checked, cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text);
+                    cbTransaction.Checked, cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text);
             }
             catch (Exception ex)
             {
@@ -92,7 +93,13 @@ namespace DataBucket.Presenter
             }
         }
 
-        private void CheckBox_CheckedChanged(object sender, EventArgs e) =>
+        private void CheckBox_CheckedChanged(object? sender, EventArgs e) =>
             (sender as CheckBox).Image = (sender as CheckBox).Checked ? Properties.Resources.checkmark3 : Properties.Resources.crossmark3;
+
+        private void txtInvoice_TextChanged(object? sender, EventArgs e)
+        {
+            if (txtInvoice.Text.Length >= 0) lblReceipt.Text = "Számla: van";
+            else lblReceipt.Text = "Számla: nincs";
+        }
     }
 }

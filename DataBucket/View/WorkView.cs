@@ -112,7 +112,7 @@ namespace DataBucket.View
                 await conn.FillWorkByWorker(dgvWork, pgnWork.PageLimit, pgnWork.CurrentPage, cldWork, cmbRepairman.SelectedIndex > 0 ? cmbRepairman : cmbConcomitant /*?? cmbRepairman*/);
             }
 
-            if (dgvWork.Columns.Count == 13)
+            if (dgvWork.Columns.Count == 12)
             {
                 using (DataGridViewCheckBoxColumn chkBoxColumn = new DataGridViewCheckBoxColumn())
                 {
@@ -124,10 +124,10 @@ namespace DataBucket.View
                     dgvWork.Columns.Insert(0, chkBoxColumn);
                 }
 
-                for (int i = 2; i < 13; i++) dgvWork.Columns[i].ReadOnly = true;
+                for (int i = 2; i < 12; i++) dgvWork.Columns[i].ReadOnly = true;
 
                 dgvWork.Columns[1].Visible = false;
-                dgvWork.Columns[13].Visible = false;
+                dgvWork.Columns[12].Visible = false;
                 dgvWork.Columns[0].Width = 30;
             }
         }
@@ -263,7 +263,7 @@ namespace DataBucket.View
 
             //flpImages.Controls.Clear();
             flpImages.SuspendLayout();
-            flpImages.Controls.AddRange(dgvWork.SelectedCells[13].Value.ToString()?.Split('|')
+            flpImages.Controls.AddRange(dgvWork.SelectedCells[12].Value.ToString()?.Split('|')
                 .Select(x => new SignalPicture { ImageLocation = Path.Combine(Settings.signalPath, x + ".jpeg") }).ToArray());
             flpImages.ResumeLayout();
 
@@ -352,7 +352,7 @@ namespace DataBucket.View
 
         private void dgvWork_CellPainting(object? sender, DataGridViewCellPaintingEventArgs e)
         {
-            if (dgvWork.Columns.Count == 13) return;
+            if (dgvWork.Columns.Count == 12) return;
 
             if (e.RowIndex == -1 && e.ColumnIndex == 0)
             {
@@ -373,12 +373,12 @@ namespace DataBucket.View
                 e.Handled = true;
             }
 
-            dgvWork.DrawBadge(e, 10, "Utalás", "Készpénz",
+            dgvWork.DrawBadge(e, 11, "Utalás", "Készpénz",
                 Color.FromArgb(80, 130, 130), Color.FromArgb(130, 130, 80));
-            dgvWork.DrawBadge(e, 11, "Van számla", "Nincs számla",
-                Color.FromArgb(80, 80, 130), Color.FromArgb(130, 80, 130));
-            dgvWork.DrawBadge(e, 12, "Fizetett", "Nem fizetett",
-                Color.FromArgb(80, 130, 80), Color.FromArgb(130, 80, 80));
+            /*dgvWork.DrawBadge(e, 11, "Van számla", "Nincs számla",
+                Color.FromArgb(80, 80, 130), Color.FromArgb(130, 80, 130));*/
+            /*dgvWork.DrawBadge(e, 11, "Fizetett", "Nem fizetett",
+                Color.FromArgb(80, 130, 80), Color.FromArgb(130, 80, 80));*/
         }
 
         private void dgvWork_ColumnHeaderMouseClick(object? sender, DataGridViewCellMouseEventArgs e)

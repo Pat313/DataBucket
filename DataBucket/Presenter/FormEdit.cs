@@ -38,7 +38,7 @@ namespace DataBucket.Presenter
 
             // checkbox event handlers up here because of icon change
             cbTransaction.CheckedChanged += CheckBox_CheckedChanged;
-            cbReceipt.CheckedChanged += CheckBox_CheckedChanged;
+            //cbReceipt.CheckedChanged += CheckBox_CheckedChanged;
             cbPaid.CheckedChanged += CheckBox_CheckedChanged;
 
             object[] data = await conn.LoadAllById(selectedId);
@@ -55,7 +55,7 @@ namespace DataBucket.Presenter
             txtOther.Text = data[9].ToString();
             txtExpense.Text = data[10].ToString();
             cbTransaction.Checked = (bool)data[11];
-            cbReceipt.Checked = (bool)data[12];
+            //cbReceipt.Checked = (bool)data[12];
             cbPaid.Checked = (bool)data[13];
             txtDelivered.Text = data[14].ToString();
             txtFinal.Text = data[15].ToString();
@@ -117,9 +117,9 @@ namespace DataBucket.Presenter
                 }
                 else result = string.Join("|", loadedRefs);
 
-                await conn.UpdateWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtInvoice.Text, Convert.ToInt32(txtIncome.Text),
+                /*await conn.UpdateWork(dtpDate.Value, txtName.Text, txtAddress.Text, txtPhone.Text, txtInvoice.Text, Convert.ToInt32(txtIncome.Text),
                     Convert.ToInt32(txtMaterial.Text), Convert.ToInt32(txtFuel.Text), Convert.ToInt32(txtOther.Text), cbPaid.Checked, cbReceipt.Checked,
-                    cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text, selectedId);
+                    cbPaid.Checked, result, cmbRepairman.Text, cmbConcomitant.Text, selectedId);*/
             }
             catch (Exception ex)
             {

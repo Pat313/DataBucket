@@ -145,7 +145,7 @@
             dgvWork.ContextMenuStrip = cmsWork;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(30, 30, 30);
-            dataGridViewCellStyle3.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.Font = new Font("Calibri", 12F, FontStyle.Regular, GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = Color.FromArgb(180, 180, 180);
             dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(60, 60, 60);
             dataGridViewCellStyle3.SelectionForeColor = Color.Gainsboro;

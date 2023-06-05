@@ -102,7 +102,7 @@ namespace DataBucket.Presenter
 
         private void txtInvoice_TextChanged(object? sender, EventArgs e)
         {
-            if (txtInvoice.Text.Length > 0) lblReceipt.Text = "Számla: van";
+            if (!string.IsNullOrWhiteSpace(txtInvoice.Text)) lblReceipt.Text = "Számla: van";
             else lblReceipt.Text = "Számla: nincs";
         }
     }

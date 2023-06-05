@@ -60,13 +60,14 @@ namespace DataBucket.Presenter
             txtOther.Text = data[10].ToString();
             txtExpense.Text = data[11].ToString();
             cbTransaction.Checked = (bool)data[12];
-            //cbReceipt.Checked = (bool)data[13];
-            cbPaid.Checked = (bool)data[14];
-            txtDelivered.Text = data[15].ToString();
-            txtFinal.Text = data[16].ToString();
-            loadedRefs = data[17].ToString().Split('|').ToList();
-            cmbRepairman.SelectedIndex = (int)data[18] - 1;
-            cmbConcomitant.SelectedIndex = (int)data[19] - 1;
+            cbPaid.Checked = (bool)data[13];
+            txtDelivered.Text = data[14].ToString();
+            txtFinal.Text = data[15].ToString();
+            loadedRefs = data[16].ToString().Split('|').ToList();
+            cmbRepairman.SelectedIndex = (int)data[17] - 1;
+            cmbConcomitant.SelectedIndex = (int)data[18] - 1;
+
+            if (!string.IsNullOrWhiteSpace(txtInvoice.Text)) lblReceipt.Text = "Számla: van";
 
             // image refs
             for (int i = 0; i < loadedRefs.Count; i++)
@@ -118,6 +119,17 @@ namespace DataBucket.Presenter
                         .Where(imageref => !string.IsNullOrEmpty(imageref))
                         .ToArray();
 
+                    var removedImages = loadedImages
+                        .Where((pb, i) => pb.Image != imgPreview.PictureBoxes[i].Image)
+                        .Select((pb, i) => loadedRefs[i])
+                        .ToArray();
+
+                    foreach (var imageref in removedImages)
+                    {
+                        if (File.Exists(Path.Combine(Settings.signalPath, imageref)))
+                            File.Delete(Path.Combine(Settings.signalPath, imageref));
+                    }
+
                     result = string.Join("|", imagerefs);
                 }
                 else result = string.Join("|", loadedRefs);
@@ -139,7 +151,7 @@ namespace DataBucket.Presenter
 
         private void txtInvoice_TextChanged(object? sender, EventArgs e)
         {
-            if (txtInvoice.Text.Length > 0) lblReceipt.Text = "Számla: van";
+            if (!string.IsNullOrWhiteSpace(txtInvoice.Text)) lblReceipt.Text = "Számla: van";
             else lblReceipt.Text = "Számla: nincs";
         }
     }

@@ -8,10 +8,11 @@ using MySql.Data.MySqlClient;
 
 using FontAwesome.Sharp;
 
+using Microsoft.Win32;
+
 using DataBucket.View;
 using DataBucket.UI;
-using Microsoft.Win32;
-using System.Linq;
+using System.Reflection;
 
 namespace DataBucket.Presenter
 {
@@ -62,7 +63,9 @@ namespace DataBucket.Presenter
             btnExit.Click += btnExit_Click;
 
             btnStartServer.Click += btnStartServer_Click;
-            
+
+            lblVersion.Text = $"Ver: {VersionLabel.ToString(4)}";
+
             UserPreferenceChanged = new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
             this.Disposed += Form_Disposed;
@@ -74,13 +77,21 @@ namespace DataBucket.Presenter
 
         private void LoadViews()
         {
-            btnWorks.PerformClick();
+            //pnlMain.Controls.Add(WorkView.Instance); // home
+            pnlMain.Controls.Add(WorkView.Instance);
+            pnlMain.Controls.Add(WorkerView.Instance);
+            pnlMain.Controls.Add(AccountingView.Instance);
+            pnlMain.Controls.Add(LiabilitiesView.Instance);
+            pnlMain.Controls.Add(StatisticsView.Instance);
+            pnlMain.Controls.Add(SettingsView.Instance);
+
+            /*btnWorks.PerformClick();
             btnWorkers.PerformClick();
             btnAccounting.PerformClick();
             btnLiabilities.PerformClick();
             btnStatistics.PerformClick();
             btnSettings.PerformClick();
-            btnHome.PerformClick();
+            btnHome.PerformClick();*/
         }
 
         private void LoadTheme()
@@ -164,6 +175,8 @@ namespace DataBucket.Presenter
             public static string settings = "Beállítások";
         }
 
+        private Version VersionLabel => Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
+
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
@@ -209,20 +222,18 @@ namespace DataBucket.Presenter
         private void btnWorks_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color3);
-            if (!pnlMain.Controls.Contains(WorkView.Instance))
-                pnlMain.Controls.Add(WorkView.Instance);
+            //if (!pnlMain.Controls.Contains(WorkView.Instance)) pnlMain.Controls.Add(WorkView.Instance);
             WorkView.Instance.BringToFront();
-            WorkView.Instance.Show();
+            //WorkView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.work;
         }
 
         private void btnWorkers_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            if (!pnlMain.Controls.Contains(WorkerView.Instance))
-                pnlMain.Controls.Add(WorkerView.Instance);
+            //if (!pnlMain.Controls.Contains(WorkerView.Instance)) pnlMain.Controls.Add(WorkerView.Instance);
             WorkerView.Instance.BringToFront();
-            WorkerView.Instance.Show();
+            //WorkerView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.worker;
         }
 
@@ -232,33 +243,33 @@ namespace DataBucket.Presenter
             if (!pnlMain.Controls.Contains(AccountingView.Instance))
                 pnlMain.Controls.Add(AccountingView.Instance);
             AccountingView.Instance.BringToFront();
-            AccountingView.Instance.Show();
+            //AccountingView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.accounting;
         }
 
         private void btnLiabilities_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color5);
-            if (!pnlMain.Controls.Contains(LiabilitiesView.Instance))
-                pnlMain.Controls.Add(LiabilitiesView.Instance);
+            //if (!pnlMain.Controls.Contains(LiabilitiesView.Instance)) pnlMain.Controls.Add(LiabilitiesView.Instance);
             LiabilitiesView.Instance.BringToFront();
-            LiabilitiesView.Instance.Show();
+            //LiabilitiesView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.liabilities;
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color6);
-            if (!pnlMain.Controls.Contains(StatisticsView.Instance))
-                pnlMain.Controls.Add(StatisticsView.Instance);
+            //if (!pnlMain.Controls.Contains(StatisticsView.Instance)) pnlMain.Controls.Add(StatisticsView.Instance);
             StatisticsView.Instance.BringToFront();
-            StatisticsView.Instance.Show();
+            //StatisticsView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.statistics;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color7);
+
+            SettingsView.Instance.BringToFront();
 
             lblCurrentChild.Text = ButtonNames.settings;
         }

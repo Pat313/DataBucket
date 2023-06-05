@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Data;
-
+using System.Runtime.CompilerServices;
 using DataBucket._Base;
 using DataBucket.Presenter;
 using DataBucket.UI;
@@ -216,15 +216,30 @@ namespace DataBucket.View
 
             DialogResult result = MessageBox.Show("Biztosan törlöd az alábbi munkákat?\n" +
                 $"{string.Join("\n", selected.Select(i => i.Value).ToList().Take(5))}\n{(selected.Count > 5 ? "...\n" : "")}" +
-                $"Összesen {selected.Count} kerül majd törlésre.",
+                $"Összesen {selected.Count} munka kerül majd törlésre.",
                 "Megerősítés", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 await conn.DeleteWork(selected.Select(i => i.Key).ToList());
+
+                await DeleteImages(dgvWork.SelectedRows);
+
                 //btnRefresh.PerformClick();
                 LoadPage();
                 //dgvWork.Sort(dgvWork.Columns[2], ListSortDirection.Ascending);
             }
+        }
+
+        private Task DeleteImages(DataGridViewSelectedRowCollection works)
+        {
+            for (int i = 0; i < works.Count; i++)
+            {
+                string[] images = works[i].Cells[12].ToString().Split('|').ToArray();
+                for (int j = 0; j < images.Length; j++)
+                    File.Delete(Path.Combine(Settings.signalPath, images[j]));
+            }
+
+            return Task.CompletedTask;
         }
 
         private void btnSearch_Click(object? sender, EventArgs e)
@@ -236,7 +251,7 @@ namespace DataBucket.View
             dgvWork.Columns[1].Visible = true;
             dgvWork.Columns[9].Visible = false;
 
-            dgvWork.Sort(dgvWork.Columns[2], ListSortDirection.Ascending);
+            //dgvWork.Sort(dgvWork.Columns[2], ListSortDirection.Ascending);
 
             SetStatusColor();
         }
@@ -260,7 +275,7 @@ namespace DataBucket.View
                 
             flpImages.Controls.Clear();
             flpImages.SuspendLayout();
-            flpImages.Controls.AddRange(dgvWork.SelectedCells[12].Value.ToString()?.Split('|')
+            flpImages.Controls.AddRange(dgvWork.SelectedCells[11].Value.ToString()?.Split('|')
                 .Select(x => new SignalPicture { ImageLocation = Path.Combine(Settings.signalPath, $"{x}.jpeg") }).ToArray());
             flpImages.ResumeLayout();
 

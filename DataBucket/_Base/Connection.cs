@@ -12,7 +12,7 @@ namespace DataBucket._Base
         #region Establishing & terminating connection
         // connectionstring
         //private MySqlConnectionStringBuilder conString = new MySqlConnectionStringBuilder();
-        private readonly MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con_mobil33acc"].ConnectionString);
+        private readonly MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con_1"].ConnectionString);
         /*MySqlConnectionStringBuilder builder = new();
         builder.Server = "192.168.100.2";
         builder.Database = "mobil33acc";
@@ -31,8 +31,6 @@ namespace DataBucket._Base
         {
             try { if (con.State != ConnectionState.Open) await con.OpenAsync(); }
             catch (Exception ex) { MessageBox.Show("Hiba csatlakozáskor!\n" + ex); }
-
-            
         }//);
 
         private async Task Close()
@@ -168,7 +166,7 @@ namespace DataBucket._Base
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work " +
                 $"WHERE (date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}') " +
-                $"AND transaction = 1 AND receipt = 1{(chb.Checked ? "" : " AND paid = 0")}",
+                $"AND transaction = 1 AND invoice NOT LIKE ''{(chb.Checked ? "" : " AND paid = 0")}",
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
@@ -351,7 +349,7 @@ namespace DataBucket._Base
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', " +
                 $"income AS 'Utalás összege', expense AS 'Össz. kiadás', paid AS 'Utalás státusza' FROM work " +
-                $"WHERE transaction = 1 AND receipt = 1{(chb.Checked ? "" : " AND paid = 0")} " +
+                $"WHERE transaction = 1 AND invoice NOT LIKE ''{(chb.Checked ? "" : " AND paid = 0")} " +
                 $"AND date BETWEEN '{date1.Value:yyyy-MM-dd}' AND '{date2.Value:yyyy-MM-dd}' " +
                 $"ORDER BY date " +
                 $"LIMIT {limit} " +

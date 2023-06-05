@@ -27,9 +27,9 @@ namespace DataBucket.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none")]
-        public string con_mobil33acc {
+        public string con_1 {
             get {
-                return ((string)(this["con_mobil33acc"]));
+                return ((string)(this["con_1"]));
             }
         }
     }

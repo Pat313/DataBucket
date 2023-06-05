@@ -29,425 +29,437 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.lblLogo1 = new System.Windows.Forms.Label();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
-            this.pnlLogo = new System.Windows.Forms.Panel();
-            this.btnMenu = new FontAwesome.Sharp.IconButton();
-            this.lblLogo2 = new System.Windows.Forms.Label();
-            this.pnlMenu = new System.Windows.Forms.Panel();
-            this.btnSettings = new FontAwesome.Sharp.IconButton();
-            this.btnStatistics = new FontAwesome.Sharp.IconButton();
-            this.btnLiabilities = new FontAwesome.Sharp.IconButton();
-            this.btnAccounting = new FontAwesome.Sharp.IconButton();
-            this.btnWorkers = new FontAwesome.Sharp.IconButton();
-            this.btnWorks = new FontAwesome.Sharp.IconButton();
-            this.btnHome = new FontAwesome.Sharp.IconButton();
-            this.pnlTitle = new System.Windows.Forms.Panel();
-            this.iconCurrentChild = new FontAwesome.Sharp.IconPictureBox();
-            this.btnStartServer = new System.Windows.Forms.Button();
-            this.btnExit = new FontAwesome.Sharp.IconButton();
-            this.btnMaximize = new FontAwesome.Sharp.IconButton();
-            this.btnMinimize = new FontAwesome.Sharp.IconButton();
-            this.lblCurrentChild = new System.Windows.Forms.Label();
-            this.pnlMain = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
-            this.pnlLogo.SuspendLayout();
-            this.pnlMenu.SuspendLayout();
-            this.pnlTitle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChild)).BeginInit();
-            this.SuspendLayout();
+            lblLogo1 = new Label();
+            pbLogo = new PictureBox();
+            pnlLogo = new Panel();
+            btnMenu = new FontAwesome.Sharp.IconButton();
+            lblLogo2 = new Label();
+            pnlMenu = new Panel();
+            lblVersion = new Label();
+            btnSettings = new FontAwesome.Sharp.IconButton();
+            btnStatistics = new FontAwesome.Sharp.IconButton();
+            btnLiabilities = new FontAwesome.Sharp.IconButton();
+            btnAccounting = new FontAwesome.Sharp.IconButton();
+            btnWorkers = new FontAwesome.Sharp.IconButton();
+            btnWorks = new FontAwesome.Sharp.IconButton();
+            btnHome = new FontAwesome.Sharp.IconButton();
+            pnlTitle = new Panel();
+            iconCurrentChild = new FontAwesome.Sharp.IconPictureBox();
+            btnStartServer = new Button();
+            btnExit = new FontAwesome.Sharp.IconButton();
+            btnMaximize = new FontAwesome.Sharp.IconButton();
+            btnMinimize = new FontAwesome.Sharp.IconButton();
+            lblCurrentChild = new Label();
+            pnlMain = new Panel();
+            ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
+            pnlLogo.SuspendLayout();
+            pnlMenu.SuspendLayout();
+            pnlTitle.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)iconCurrentChild).BeginInit();
+            SuspendLayout();
             // 
             // lblLogo1
             // 
-            this.lblLogo1.AutoSize = true;
-            this.lblLogo1.Font = new System.Drawing.Font("Forte", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.lblLogo1.Location = new System.Drawing.Point(92, 23);
-            this.lblLogo1.Name = "lblLogo1";
-            this.lblLogo1.Size = new System.Drawing.Size(87, 36);
-            this.lblLogo1.TabIndex = 17;
-            this.lblLogo1.Text = "Adat";
+            lblLogo1.AutoSize = true;
+            lblLogo1.Font = new Font("Forte", 19.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLogo1.ForeColor = Color.Gainsboro;
+            lblLogo1.Location = new Point(92, 23);
+            lblLogo1.Name = "lblLogo1";
+            lblLogo1.Size = new Size(87, 36);
+            lblLogo1.TabIndex = 17;
+            lblLogo1.Text = "Adat";
             // 
             // pbLogo
             // 
-            this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(23, 23);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(70, 70);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 10;
-            this.pbLogo.TabStop = false;
+            pbLogo.Image = (Image)resources.GetObject("pbLogo.Image");
+            pbLogo.Location = new Point(23, 23);
+            pbLogo.Name = "pbLogo";
+            pbLogo.Size = new Size(70, 70);
+            pbLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbLogo.TabIndex = 10;
+            pbLogo.TabStop = false;
             // 
             // pnlLogo
             // 
-            this.pnlLogo.Controls.Add(this.btnMenu);
-            this.pnlLogo.Controls.Add(this.pbLogo);
-            this.pnlLogo.Controls.Add(this.lblLogo1);
-            this.pnlLogo.Controls.Add(this.lblLogo2);
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Padding = new System.Windows.Forms.Padding(20);
-            this.pnlLogo.Size = new System.Drawing.Size(300, 120);
-            this.pnlLogo.TabIndex = 16;
+            pnlLogo.Controls.Add(btnMenu);
+            pnlLogo.Controls.Add(pbLogo);
+            pnlLogo.Controls.Add(lblLogo1);
+            pnlLogo.Controls.Add(lblLogo2);
+            pnlLogo.Dock = DockStyle.Top;
+            pnlLogo.Location = new Point(0, 0);
+            pnlLogo.Name = "pnlLogo";
+            pnlLogo.Padding = new Padding(20);
+            pnlLogo.Size = new Size(300, 120);
+            pnlLogo.TabIndex = 16;
             // 
             // btnMenu
             // 
-            this.btnMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnMenu.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnMenu.FlatAppearance.BorderSize = 0;
-            this.btnMenu.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnMenu.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.IconChar = FontAwesome.Sharp.IconChar.Navicon;
-            this.btnMenu.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnMenu.IconSize = 60;
-            this.btnMenu.Location = new System.Drawing.Point(220, 30);
-            this.btnMenu.Margin = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(60, 60);
-            this.btnMenu.TabIndex = 26;
-            this.btnMenu.UseVisualStyleBackColor = false;
+            btnMenu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMenu.BackColor = Color.FromArgb(30, 30, 30);
+            btnMenu.FlatAppearance.BorderColor = Color.FromArgb(30, 30, 30);
+            btnMenu.FlatAppearance.BorderSize = 0;
+            btnMenu.FlatAppearance.MouseDownBackColor = Color.FromArgb(30, 30, 30);
+            btnMenu.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 30, 30);
+            btnMenu.FlatStyle = FlatStyle.Flat;
+            btnMenu.IconChar = FontAwesome.Sharp.IconChar.Navicon;
+            btnMenu.IconColor = Color.Gainsboro;
+            btnMenu.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMenu.IconSize = 60;
+            btnMenu.Location = new Point(220, 30);
+            btnMenu.Margin = new Padding(0, 10, 0, 10);
+            btnMenu.Name = "btnMenu";
+            btnMenu.Size = new Size(60, 60);
+            btnMenu.TabIndex = 26;
+            btnMenu.UseVisualStyleBackColor = false;
             // 
             // lblLogo2
             // 
-            this.lblLogo2.AutoSize = true;
-            this.lblLogo2.Font = new System.Drawing.Font("Forte", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLogo2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.lblLogo2.Location = new System.Drawing.Point(93, 62);
-            this.lblLogo2.Name = "lblLogo2";
-            this.lblLogo2.Size = new System.Drawing.Size(84, 31);
-            this.lblLogo2.TabIndex = 18;
-            this.lblLogo2.Text = "Vödör";
+            lblLogo2.AutoSize = true;
+            lblLogo2.Font = new Font("Forte", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            lblLogo2.ForeColor = Color.DodgerBlue;
+            lblLogo2.Location = new Point(93, 62);
+            lblLogo2.Name = "lblLogo2";
+            lblLogo2.Size = new Size(84, 31);
+            lblLogo2.TabIndex = 18;
+            lblLogo2.Text = "Vödör";
             // 
             // pnlMenu
             // 
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.pnlMenu.Controls.Add(this.btnSettings);
-            this.pnlMenu.Controls.Add(this.btnStatistics);
-            this.pnlMenu.Controls.Add(this.btnLiabilities);
-            this.pnlMenu.Controls.Add(this.btnAccounting);
-            this.pnlMenu.Controls.Add(this.btnWorkers);
-            this.pnlMenu.Controls.Add(this.btnWorks);
-            this.pnlMenu.Controls.Add(this.btnHome);
-            this.pnlMenu.Controls.Add(this.pnlLogo);
-            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(300, 853);
-            this.pnlMenu.TabIndex = 15;
+            pnlMenu.BackColor = Color.FromArgb(30, 30, 30);
+            pnlMenu.Controls.Add(lblVersion);
+            pnlMenu.Controls.Add(btnSettings);
+            pnlMenu.Controls.Add(btnStatistics);
+            pnlMenu.Controls.Add(btnLiabilities);
+            pnlMenu.Controls.Add(btnAccounting);
+            pnlMenu.Controls.Add(btnWorkers);
+            pnlMenu.Controls.Add(btnWorks);
+            pnlMenu.Controls.Add(btnHome);
+            pnlMenu.Controls.Add(pnlLogo);
+            pnlMenu.Dock = DockStyle.Left;
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(300, 853);
+            pnlMenu.TabIndex = 15;
+            // 
+            // lblVersion
+            // 
+            lblVersion.AutoSize = true;
+            lblVersion.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            lblVersion.Location = new Point(12, 816);
+            lblVersion.Name = "lblVersion";
+            lblVersion.Size = new Size(120, 28);
+            lblVersion.TabIndex = 24;
+            lblVersion.Text = "Ver: 0.0.0.0";
             // 
             // btnSettings
             // 
-            this.btnSettings.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnSettings.FlatAppearance.BorderSize = 0;
-            this.btnSettings.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnSettings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSettings.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnSettings.IconChar = FontAwesome.Sharp.IconChar.Gears;
-            this.btnSettings.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSettings.IconSize = 40;
-            this.btnSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.Location = new System.Drawing.Point(0, 600);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnSettings.Size = new System.Drawing.Size(300, 80);
-            this.btnSettings.TabIndex = 22;
-            this.btnSettings.Text = "Beállítások";
-            this.btnSettings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSettings.UseVisualStyleBackColor = true;
+            btnSettings.Dock = DockStyle.Top;
+            btnSettings.FlatAppearance.BorderSize = 0;
+            btnSettings.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnSettings.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnSettings.FlatStyle = FlatStyle.Flat;
+            btnSettings.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSettings.IconChar = FontAwesome.Sharp.IconChar.Gears;
+            btnSettings.IconColor = Color.Gainsboro;
+            btnSettings.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSettings.IconSize = 40;
+            btnSettings.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSettings.Location = new Point(0, 600);
+            btnSettings.Name = "btnSettings";
+            btnSettings.Padding = new Padding(10, 0, 20, 0);
+            btnSettings.Size = new Size(300, 80);
+            btnSettings.TabIndex = 22;
+            btnSettings.Text = "Beállítások";
+            btnSettings.TextAlign = ContentAlignment.MiddleLeft;
+            btnSettings.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnSettings.UseVisualStyleBackColor = true;
             // 
             // btnStatistics
             // 
-            this.btnStatistics.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnStatistics.FlatAppearance.BorderSize = 0;
-            this.btnStatistics.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnStatistics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatistics.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStatistics.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
-            this.btnStatistics.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnStatistics.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnStatistics.IconSize = 40;
-            this.btnStatistics.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStatistics.Location = new System.Drawing.Point(0, 520);
-            this.btnStatistics.Name = "btnStatistics";
-            this.btnStatistics.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnStatistics.Size = new System.Drawing.Size(300, 80);
-            this.btnStatistics.TabIndex = 21;
-            this.btnStatistics.Text = "Statisztika";
-            this.btnStatistics.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStatistics.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStatistics.UseVisualStyleBackColor = true;
+            btnStatistics.Dock = DockStyle.Top;
+            btnStatistics.FlatAppearance.BorderSize = 0;
+            btnStatistics.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnStatistics.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnStatistics.FlatStyle = FlatStyle.Flat;
+            btnStatistics.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStatistics.IconChar = FontAwesome.Sharp.IconChar.ChartColumn;
+            btnStatistics.IconColor = Color.Gainsboro;
+            btnStatistics.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnStatistics.IconSize = 40;
+            btnStatistics.ImageAlign = ContentAlignment.MiddleLeft;
+            btnStatistics.Location = new Point(0, 520);
+            btnStatistics.Name = "btnStatistics";
+            btnStatistics.Padding = new Padding(10, 0, 20, 0);
+            btnStatistics.Size = new Size(300, 80);
+            btnStatistics.TabIndex = 21;
+            btnStatistics.Text = "Statisztika";
+            btnStatistics.TextAlign = ContentAlignment.MiddleLeft;
+            btnStatistics.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnStatistics.UseVisualStyleBackColor = true;
             // 
             // btnLiabilities
             // 
-            this.btnLiabilities.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnLiabilities.FlatAppearance.BorderSize = 0;
-            this.btnLiabilities.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnLiabilities.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnLiabilities.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLiabilities.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnLiabilities.IconChar = FontAwesome.Sharp.IconChar.MoneyCheckDollar;
-            this.btnLiabilities.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnLiabilities.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLiabilities.IconSize = 40;
-            this.btnLiabilities.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLiabilities.Location = new System.Drawing.Point(0, 440);
-            this.btnLiabilities.Name = "btnLiabilities";
-            this.btnLiabilities.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnLiabilities.Size = new System.Drawing.Size(300, 80);
-            this.btnLiabilities.TabIndex = 20;
-            this.btnLiabilities.Text = "Követelések";
-            this.btnLiabilities.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLiabilities.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLiabilities.UseVisualStyleBackColor = true;
+            btnLiabilities.Dock = DockStyle.Top;
+            btnLiabilities.FlatAppearance.BorderSize = 0;
+            btnLiabilities.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnLiabilities.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnLiabilities.FlatStyle = FlatStyle.Flat;
+            btnLiabilities.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnLiabilities.IconChar = FontAwesome.Sharp.IconChar.MoneyCheckDollar;
+            btnLiabilities.IconColor = Color.Gainsboro;
+            btnLiabilities.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnLiabilities.IconSize = 40;
+            btnLiabilities.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLiabilities.Location = new Point(0, 440);
+            btnLiabilities.Name = "btnLiabilities";
+            btnLiabilities.Padding = new Padding(10, 0, 20, 0);
+            btnLiabilities.Size = new Size(300, 80);
+            btnLiabilities.TabIndex = 20;
+            btnLiabilities.Text = "Követelések";
+            btnLiabilities.TextAlign = ContentAlignment.MiddleLeft;
+            btnLiabilities.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnLiabilities.UseVisualStyleBackColor = true;
             // 
             // btnAccounting
             // 
-            this.btnAccounting.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAccounting.FlatAppearance.BorderSize = 0;
-            this.btnAccounting.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnAccounting.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnAccounting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAccounting.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnAccounting.IconChar = FontAwesome.Sharp.IconChar.Calculator;
-            this.btnAccounting.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnAccounting.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAccounting.IconSize = 40;
-            this.btnAccounting.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccounting.Location = new System.Drawing.Point(0, 360);
-            this.btnAccounting.Name = "btnAccounting";
-            this.btnAccounting.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnAccounting.Size = new System.Drawing.Size(300, 80);
-            this.btnAccounting.TabIndex = 19;
-            this.btnAccounting.Text = "Elszámolás";
-            this.btnAccounting.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAccounting.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnAccounting.UseVisualStyleBackColor = true;
+            btnAccounting.Dock = DockStyle.Top;
+            btnAccounting.FlatAppearance.BorderSize = 0;
+            btnAccounting.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnAccounting.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnAccounting.FlatStyle = FlatStyle.Flat;
+            btnAccounting.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAccounting.IconChar = FontAwesome.Sharp.IconChar.Calculator;
+            btnAccounting.IconColor = Color.Gainsboro;
+            btnAccounting.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAccounting.IconSize = 40;
+            btnAccounting.ImageAlign = ContentAlignment.MiddleLeft;
+            btnAccounting.Location = new Point(0, 360);
+            btnAccounting.Name = "btnAccounting";
+            btnAccounting.Padding = new Padding(10, 0, 20, 0);
+            btnAccounting.Size = new Size(300, 80);
+            btnAccounting.TabIndex = 19;
+            btnAccounting.Text = "Elszámolás";
+            btnAccounting.TextAlign = ContentAlignment.MiddleLeft;
+            btnAccounting.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnAccounting.UseVisualStyleBackColor = true;
             // 
             // btnWorkers
             // 
-            this.btnWorkers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnWorkers.FlatAppearance.BorderSize = 0;
-            this.btnWorkers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnWorkers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnWorkers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWorkers.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnWorkers.IconChar = FontAwesome.Sharp.IconChar.Users;
-            this.btnWorkers.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnWorkers.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnWorkers.IconSize = 40;
-            this.btnWorkers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorkers.Location = new System.Drawing.Point(0, 280);
-            this.btnWorkers.Name = "btnWorkers";
-            this.btnWorkers.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnWorkers.Size = new System.Drawing.Size(300, 80);
-            this.btnWorkers.TabIndex = 18;
-            this.btnWorkers.Text = "Munkavállalók";
-            this.btnWorkers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorkers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnWorkers.UseVisualStyleBackColor = true;
+            btnWorkers.Dock = DockStyle.Top;
+            btnWorkers.FlatAppearance.BorderSize = 0;
+            btnWorkers.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnWorkers.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnWorkers.FlatStyle = FlatStyle.Flat;
+            btnWorkers.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnWorkers.IconChar = FontAwesome.Sharp.IconChar.Users;
+            btnWorkers.IconColor = Color.Gainsboro;
+            btnWorkers.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnWorkers.IconSize = 40;
+            btnWorkers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWorkers.Location = new Point(0, 280);
+            btnWorkers.Name = "btnWorkers";
+            btnWorkers.Padding = new Padding(10, 0, 20, 0);
+            btnWorkers.Size = new Size(300, 80);
+            btnWorkers.TabIndex = 18;
+            btnWorkers.Text = "Munkavállalók";
+            btnWorkers.TextAlign = ContentAlignment.MiddleLeft;
+            btnWorkers.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnWorkers.UseVisualStyleBackColor = true;
             // 
             // btnWorks
             // 
-            this.btnWorks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnWorks.FlatAppearance.BorderSize = 0;
-            this.btnWorks.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnWorks.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnWorks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnWorks.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnWorks.IconChar = FontAwesome.Sharp.IconChar.ListUl;
-            this.btnWorks.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnWorks.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnWorks.IconSize = 40;
-            this.btnWorks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorks.Location = new System.Drawing.Point(0, 200);
-            this.btnWorks.Name = "btnWorks";
-            this.btnWorks.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnWorks.Size = new System.Drawing.Size(300, 80);
-            this.btnWorks.TabIndex = 17;
-            this.btnWorks.Text = "Munkák";
-            this.btnWorks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnWorks.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnWorks.UseVisualStyleBackColor = true;
+            btnWorks.Dock = DockStyle.Top;
+            btnWorks.FlatAppearance.BorderSize = 0;
+            btnWorks.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnWorks.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnWorks.FlatStyle = FlatStyle.Flat;
+            btnWorks.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnWorks.IconChar = FontAwesome.Sharp.IconChar.ListUl;
+            btnWorks.IconColor = Color.Gainsboro;
+            btnWorks.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnWorks.IconSize = 40;
+            btnWorks.ImageAlign = ContentAlignment.MiddleLeft;
+            btnWorks.Location = new Point(0, 200);
+            btnWorks.Name = "btnWorks";
+            btnWorks.Padding = new Padding(10, 0, 20, 0);
+            btnWorks.Size = new Size(300, 80);
+            btnWorks.TabIndex = 17;
+            btnWorks.Text = "Munkák";
+            btnWorks.TextAlign = ContentAlignment.MiddleLeft;
+            btnWorks.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnWorks.UseVisualStyleBackColor = true;
             // 
             // btnHome
             // 
-            this.btnHome.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.btnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnHome.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
-            this.btnHome.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHome.IconSize = 40;
-            this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.Location = new System.Drawing.Point(0, 120);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnHome.Size = new System.Drawing.Size(300, 80);
-            this.btnHome.TabIndex = 23;
-            this.btnHome.Text = "Kezdőlap";
-            this.btnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHome.UseVisualStyleBackColor = true;
+            btnHome.Dock = DockStyle.Top;
+            btnHome.FlatAppearance.BorderSize = 0;
+            btnHome.FlatAppearance.MouseDownBackColor = Color.FromArgb(40, 40, 40);
+            btnHome.FlatAppearance.MouseOverBackColor = Color.FromArgb(50, 50, 50);
+            btnHome.FlatStyle = FlatStyle.Flat;
+            btnHome.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnHome.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
+            btnHome.IconColor = Color.Gainsboro;
+            btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnHome.IconSize = 40;
+            btnHome.ImageAlign = ContentAlignment.MiddleLeft;
+            btnHome.Location = new Point(0, 120);
+            btnHome.Name = "btnHome";
+            btnHome.Padding = new Padding(10, 0, 20, 0);
+            btnHome.Size = new Size(300, 80);
+            btnHome.TabIndex = 23;
+            btnHome.Text = "Kezdőlap";
+            btnHome.TextAlign = ContentAlignment.MiddleLeft;
+            btnHome.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnHome.UseVisualStyleBackColor = true;
             // 
             // pnlTitle
             // 
-            this.pnlTitle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.pnlTitle.Controls.Add(this.iconCurrentChild);
-            this.pnlTitle.Controls.Add(this.btnStartServer);
-            this.pnlTitle.Controls.Add(this.btnExit);
-            this.pnlTitle.Controls.Add(this.btnMaximize);
-            this.pnlTitle.Controls.Add(this.btnMinimize);
-            this.pnlTitle.Controls.Add(this.lblCurrentChild);
-            this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(300, 0);
-            this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1282, 80);
-            this.pnlTitle.TabIndex = 16;
+            pnlTitle.BackColor = Color.FromArgb(35, 35, 35);
+            pnlTitle.Controls.Add(iconCurrentChild);
+            pnlTitle.Controls.Add(btnStartServer);
+            pnlTitle.Controls.Add(btnExit);
+            pnlTitle.Controls.Add(btnMaximize);
+            pnlTitle.Controls.Add(btnMinimize);
+            pnlTitle.Controls.Add(lblCurrentChild);
+            pnlTitle.Dock = DockStyle.Top;
+            pnlTitle.Location = new Point(300, 0);
+            pnlTitle.Name = "pnlTitle";
+            pnlTitle.Size = new Size(1282, 80);
+            pnlTitle.TabIndex = 16;
             // 
             // iconCurrentChild
             // 
-            this.iconCurrentChild.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.iconCurrentChild.ForeColor = System.Drawing.Color.Gainsboro;
-            this.iconCurrentChild.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
-            this.iconCurrentChild.IconColor = System.Drawing.Color.Gainsboro;
-            this.iconCurrentChild.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.iconCurrentChild.IconSize = 50;
-            this.iconCurrentChild.Location = new System.Drawing.Point(18, 15);
-            this.iconCurrentChild.Margin = new System.Windows.Forms.Padding(15, 15, 3, 15);
-            this.iconCurrentChild.Name = "iconCurrentChild";
-            this.iconCurrentChild.Size = new System.Drawing.Size(50, 50);
-            this.iconCurrentChild.TabIndex = 21;
-            this.iconCurrentChild.TabStop = false;
-            this.iconCurrentChild.UseGdi = true;
+            iconCurrentChild.BackColor = Color.FromArgb(35, 35, 35);
+            iconCurrentChild.ForeColor = Color.Gainsboro;
+            iconCurrentChild.IconChar = FontAwesome.Sharp.IconChar.HomeLg;
+            iconCurrentChild.IconColor = Color.Gainsboro;
+            iconCurrentChild.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            iconCurrentChild.IconSize = 50;
+            iconCurrentChild.Location = new Point(18, 15);
+            iconCurrentChild.Margin = new Padding(15, 15, 3, 15);
+            iconCurrentChild.Name = "iconCurrentChild";
+            iconCurrentChild.Size = new Size(50, 50);
+            iconCurrentChild.TabIndex = 21;
+            iconCurrentChild.TabStop = false;
+            iconCurrentChild.UseGdi = true;
             // 
             // btnStartServer
             // 
-            this.btnStartServer.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnStartServer.FlatAppearance.BorderSize = 0;
-            this.btnStartServer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(104)))), ((int)(((byte)(195)))));
-            this.btnStartServer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(124)))), ((int)(((byte)(225)))));
-            this.btnStartServer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartServer.Font = new System.Drawing.Font("Calibri", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.btnStartServer.ForeColor = System.Drawing.Color.Gainsboro;
-            this.btnStartServer.Location = new System.Drawing.Point(298, 15);
-            this.btnStartServer.Name = "btnStartServer";
-            this.btnStartServer.Size = new System.Drawing.Size(269, 50);
-            this.btnStartServer.TabIndex = 125;
-            this.btnStartServer.Text = "Szerver indítása";
-            this.btnStartServer.UseVisualStyleBackColor = false;
+            btnStartServer.BackColor = Color.DodgerBlue;
+            btnStartServer.FlatAppearance.BorderSize = 0;
+            btnStartServer.FlatAppearance.MouseDownBackColor = Color.FromArgb(10, 104, 195);
+            btnStartServer.FlatAppearance.MouseOverBackColor = Color.FromArgb(20, 124, 225);
+            btnStartServer.FlatStyle = FlatStyle.Flat;
+            btnStartServer.Font = new Font("Calibri", 16.2F, FontStyle.Regular, GraphicsUnit.Point);
+            btnStartServer.ForeColor = Color.Gainsboro;
+            btnStartServer.Location = new Point(298, 15);
+            btnStartServer.Name = "btnStartServer";
+            btnStartServer.Size = new Size(269, 50);
+            btnStartServer.TabIndex = 125;
+            btnStartServer.Text = "Szerver indítása";
+            btnStartServer.UseVisualStyleBackColor = false;
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.FlatAppearance.BorderSize = 0;
-            this.btnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
-            this.btnExit.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnExit.IconSize = 25;
-            this.btnExit.Location = new System.Drawing.Point(1237, 0);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(0);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(45, 30);
-            this.btnExit.TabIndex = 27;
-            this.btnExit.UseVisualStyleBackColor = true;
+            btnExit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnExit.FlatAppearance.BorderSize = 0;
+            btnExit.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 45);
+            btnExit.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 55, 55);
+            btnExit.FlatStyle = FlatStyle.Flat;
+            btnExit.IconChar = FontAwesome.Sharp.IconChar.Xmark;
+            btnExit.IconColor = Color.Gainsboro;
+            btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnExit.IconSize = 25;
+            btnExit.Location = new Point(1237, 0);
+            btnExit.Margin = new Padding(0);
+            btnExit.Name = "btnExit";
+            btnExit.Size = new Size(45, 30);
+            btnExit.TabIndex = 27;
+            btnExit.UseVisualStyleBackColor = true;
             // 
             // btnMaximize
             // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatAppearance.BorderSize = 0;
-            this.btnMaximize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnMaximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
-            this.btnMaximize.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnMaximize.IconSize = 25;
-            this.btnMaximize.Location = new System.Drawing.Point(1192, 0);
-            this.btnMaximize.Margin = new System.Windows.Forms.Padding(0);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(45, 30);
-            this.btnMaximize.TabIndex = 26;
-            this.btnMaximize.UseVisualStyleBackColor = true;
+            btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMaximize.FlatAppearance.BorderSize = 0;
+            btnMaximize.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 45);
+            btnMaximize.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 55, 55);
+            btnMaximize.FlatStyle = FlatStyle.Flat;
+            btnMaximize.IconChar = FontAwesome.Sharp.IconChar.WindowMaximize;
+            btnMaximize.IconColor = Color.Gainsboro;
+            btnMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMaximize.IconSize = 25;
+            btnMaximize.Location = new Point(1192, 0);
+            btnMaximize.Margin = new Padding(0);
+            btnMaximize.Name = "btnMaximize";
+            btnMaximize.Size = new Size(45, 30);
+            btnMaximize.TabIndex = 26;
+            btnMaximize.UseVisualStyleBackColor = true;
             // 
             // btnMinimize
             // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(55)))), ((int)(((byte)(55)))));
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
-            this.btnMinimize.IconColor = System.Drawing.Color.Gainsboro;
-            this.btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnMinimize.IconSize = 25;
-            this.btnMinimize.Location = new System.Drawing.Point(1147, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(0);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(45, 30);
-            this.btnMinimize.TabIndex = 25;
-            this.btnMinimize.UseVisualStyleBackColor = true;
+            btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnMinimize.FlatAppearance.BorderSize = 0;
+            btnMinimize.FlatAppearance.MouseDownBackColor = Color.FromArgb(45, 45, 45);
+            btnMinimize.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 55, 55);
+            btnMinimize.FlatStyle = FlatStyle.Flat;
+            btnMinimize.IconChar = FontAwesome.Sharp.IconChar.WindowMinimize;
+            btnMinimize.IconColor = Color.Gainsboro;
+            btnMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnMinimize.IconSize = 25;
+            btnMinimize.Location = new Point(1147, 0);
+            btnMinimize.Margin = new Padding(0);
+            btnMinimize.Name = "btnMinimize";
+            btnMinimize.Size = new Size(45, 30);
+            btnMinimize.TabIndex = 25;
+            btnMinimize.UseVisualStyleBackColor = true;
             // 
             // lblCurrentChild
             // 
-            this.lblCurrentChild.AutoSize = true;
-            this.lblCurrentChild.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.lblCurrentChild.Location = new System.Drawing.Point(74, 28);
-            this.lblCurrentChild.Name = "lblCurrentChild";
-            this.lblCurrentChild.Size = new System.Drawing.Size(127, 37);
-            this.lblCurrentChild.TabIndex = 21;
-            this.lblCurrentChild.Text = "Kezdőlap";
+            lblCurrentChild.AutoSize = true;
+            lblCurrentChild.Font = new Font("Calibri", 18F, FontStyle.Regular, GraphicsUnit.Point);
+            lblCurrentChild.Location = new Point(74, 28);
+            lblCurrentChild.Name = "lblCurrentChild";
+            lblCurrentChild.Size = new Size(127, 37);
+            lblCurrentChild.TabIndex = 21;
+            lblCurrentChild.Text = "Kezdőlap";
             // 
             // pnlMain
             // 
-            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(300, 80);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1282, 773);
-            this.pnlMain.TabIndex = 18;
+            pnlMain.BackColor = Color.FromArgb(25, 25, 25);
+            pnlMain.Dock = DockStyle.Fill;
+            pnlMain.Location = new Point(300, 80);
+            pnlMain.Name = "pnlMain";
+            pnlMain.Size = new Size(1282, 773);
+            pnlMain.TabIndex = 18;
             // 
             // FormMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(1582, 853);
-            this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.pnlTitle);
-            this.Controls.Add(this.pnlMenu);
-            this.DoubleBuffered = true;
-            this.Font = new System.Drawing.Font("Calibri", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ForeColor = System.Drawing.Color.Gainsboro;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1582, 853);
-            this.Name = "FormMain";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AdatVödör";
-            this.Load += new System.EventHandler(this.FormMain_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
-            this.pnlLogo.ResumeLayout(false);
-            this.pnlLogo.PerformLayout();
-            this.pnlMenu.ResumeLayout(false);
-            this.pnlTitle.ResumeLayout(false);
-            this.pnlTitle.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconCurrentChild)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(120F, 120F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.FromArgb(40, 40, 40);
+            ClientSize = new Size(1582, 853);
+            Controls.Add(pnlMain);
+            Controls.Add(pnlTitle);
+            Controls.Add(pnlMenu);
+            DoubleBuffered = true;
+            Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
+            ForeColor = Color.Gainsboro;
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MinimumSize = new Size(1582, 853);
+            Name = "FormMain";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "AdatVödör";
+            Load += FormMain_Load;
+            ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
+            pnlLogo.ResumeLayout(false);
+            pnlLogo.PerformLayout();
+            pnlMenu.ResumeLayout(false);
+            pnlMenu.PerformLayout();
+            pnlTitle.ResumeLayout(false);
+            pnlTitle.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)iconCurrentChild).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -472,6 +484,7 @@
         private FontAwesome.Sharp.IconButton btnMenu;
         private System.Windows.Forms.Button btnStartServer;
         private FontAwesome.Sharp.IconPictureBox iconCurrentChild;
+        private Label lblVersion;
     }
 }
 

@@ -1,0 +1,9 @@
+﻿## 0.1.2 (2023-06-13)
+- [N] A szerver IP címe korlátozottan testreszabható a beállításokban.
+- [I] Szerver IP váltás esetén a program újraindítása szükséges. Továbbá rossz beállításokkal a program nem működik. Ez a jövőben javításra kerül.
+## 0.1.1 (2023-06-12)
+- [N] Kezdőlap hozzáadva. Egyelőre csak a fejlesztési napló található rajta.
+- [L] Új adatbázis konfiguráció elérhető.
+- [D] A meglévő adatbázis (megjelenítési) hibákat fog generálni, mielőbbi frissítésre van szükség. A régi adatbázisba adatot beszúrni nem javasolt.
+## 0.1.0 (2023-06-05)
+- [A] Ez az első hivatalos verzió. A '0' a verziószám elején korai hozzáférést jelent (early access). A felhasználóknak csak a changelog.md fájlban lesz elérhető

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <configSections>
+    <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="DataBucket.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+    </sectionGroup>
+  </configSections>
+  <connectionStrings>
+    <add name="localhost" connectionString="server=localhost; database=mobil33acc; uid=root; password=; sslmode = none" />
+    <add name="server_1" connectionString="server=localhost; database=mobil33acc; uid=root; password=; sslmode = none" />
+    <add name="DataBucket.Properties.Settings.localhost" connectionString="server=localhost; database=mobil33acc; uid=root; password=; sslmode = none" />
+    <add name="DataBucket.Properties.Settings.server_1" connectionString="server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none" />
+  </connectionStrings>
+  <userSettings>
+    <DataBucket.Properties.Settings>
+      <setting name="serverChosen" serializeAs="String">
+        <value>"localhost"</value>
+      </setting>
+    </DataBucket.Properties.Settings>
+  </userSettings>
+</configuration>

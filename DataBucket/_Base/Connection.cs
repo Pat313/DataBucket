@@ -12,13 +12,7 @@ namespace DataBucket._Base
         #region Establishing & terminating connection
         // connectionstring
         //private MySqlConnectionStringBuilder conString = new MySqlConnectionStringBuilder();
-        private readonly MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["con_1"].ConnectionString);
-        /*MySqlConnectionStringBuilder builder = new();
-        builder.Server = "192.168.100.2";
-        builder.Database = "mobil33acc";
-        builder.UserID = "root";
-        builder.Password = string.Empty;
-        builder.SslMode = MySqlSslMode.Disabled;*/
+        private MySqlConnection con = new MySqlConnection(ConfigurationManager.ConnectionStrings["server_1"].ConnectionString);
         //private readonly MySqlConnection con = new MySqlConnection("server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none");
         //private readonly ImageManager imageManager = ImageManager.Instance;
 
@@ -27,17 +21,32 @@ namespace DataBucket._Base
         //get => instance ?? (instance = new Connection());
         //set => connection = value;
 
-        private async Task Connect() //=> await Task.Run(async () =>
+        private async void Connect() //=> await Task.Run(async () =>
         {
             try { if (con.State != ConnectionState.Open) await con.OpenAsync(); }
             catch (Exception ex) { MessageBox.Show("Hiba csatlakozáskor!\n" + ex); }
         }//);
 
-        private async Task Close()
+        private async void Close()
         {
             try { if (con.State != ConnectionState.Closed) await con.CloseAsync(); }
             catch (Exception ex) { MessageBox.Show("Hiba lecsatlakozáskor!\n" + ex); }
         }
+
+        /*public void Reset(string server)
+        {
+           MySqlConnectionStringBuilder conBuilder = new() {
+                Server = server,
+                Database = "mobil33acc",
+                UserID = "root",
+                Password = string.Empty,
+                SslMode = MySqlSslMode.None
+            };
+            con.ConnectionString = conBuilder.ConnectionString;
+        }*/
+        public void Reset(string address) => 
+            con.ConnectionString = ConfigurationManager.ConnectionStrings[address].ConnectionString;
+        public string Test() => con.ConnectionString; 
         #endregion
 
         #region Fill & Get controls
@@ -48,7 +57,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work " +
@@ -56,7 +65,7 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
@@ -67,7 +76,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work " +
@@ -79,7 +88,7 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
         
@@ -90,7 +99,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work " +
@@ -100,14 +109,14 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
         public async Task<long> GetAccountingAll(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
             long count = 0;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work AS w " +
@@ -118,14 +127,14 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
         public async Task<long> GetAccountingDaily(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
             long count = 0;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(DISTINCT date) FROM work AS w " +
@@ -136,14 +145,14 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
         public async Task<long> GetAccountingMonthly(ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
             long count = 0;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(DISTINCT MONTH(date)) FROM work AS w " +
@@ -154,14 +163,14 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
         public async Task<long> GetLiabilities(DateTimePicker date1, DateTimePicker date2, CheckBox chb)
         {
             long count = 0;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT COUNT(*) FROM work " +
@@ -170,7 +179,7 @@ namespace DataBucket._Base
                 con))
                 count = (long)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return count;
         }
 
@@ -180,7 +189,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
@@ -196,7 +205,7 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillWork(DataGridView dg, byte limit, short page, MonthCalendar cld, ComboBox cmb1, ComboBox cmb2)
@@ -205,7 +214,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
@@ -225,7 +234,7 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillWorkByWorker(DataGridView dg, byte limit, short page, MonthCalendar cld, ComboBox cmb)
@@ -234,7 +243,7 @@ namespace DataBucket._Base
             if (cld.SelectionStart == cld.SelectionEnd) dateQuery = $"LIKE '{cld.SelectionStart:yyyy-MM-dd}'";
             else dateQuery = $"BETWEEN '{cld.SelectionStart:yyyy-MM-dd}' AND '{cld.SelectionEnd:yyyy-MM-dd}'";
 
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT id, name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', note as 'Megjegyzés', invoice as 'Számlaszám', income AS 'Bevétel', material AS 'Anyagköltség', " +
@@ -252,12 +261,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillWorker(DataGridView dg)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 "SELECT firstName AS 'Vezetéknév', lastName AS 'Keresztnév', fullName AS 'Név' FROM worker",
@@ -268,12 +277,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillAccountingAll(DataGridView dg, byte limit, short page, ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT w.date AS 'Dátum', w.delivered AS 'Bugyi', w.final AS 'Leadó' FROM work AS w " +
@@ -291,12 +300,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillAccountingDaily(DataGridView dg, byte limit, short page, ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT w.date AS 'Nap', SUM(w.delivered) AS 'Bugyi', SUM(w.final) AS 'Leadó' FROM work AS w " +
@@ -315,12 +324,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillAccountingMonthly(DataGridView dg, byte limit, short page, ComboBox cmb, DateTimePicker date1, DateTimePicker date2)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT w.date AS 'Hónap', SUM(w.final) AS 'Leadó' FROM work AS w " +
@@ -339,12 +348,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         public async Task FillLiabilities(DataGridView dg, byte limit, short page, DateTimePicker date1, DateTimePicker date2, CheckBox chb)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 $"SELECT name AS 'Név', address AS 'Cím', phone AS 'Telefonszám', invoice as 'Számlaszám', " +
@@ -361,12 +370,12 @@ namespace DataBucket._Base
                 dg.DataSource = dt;
             }
 
-            await Close();
+            Close();
         }
 
         /*public async Task ChartTest(Chart chart)
         {
-            await Connect();
+            Connect();
 
             using (MySqlDataAdapter adapter = new MySqlDataAdapter(
                 "SELECT w2.fullName AS 'Szerelő', SUM(w.income) AS 'Bruttó bevétel' " +
@@ -386,13 +395,13 @@ namespace DataBucket._Base
                 chart.DataBind(); // https://stackoverflow.com/questions/53261981/c-sharp-set-sql-query-result-into-chart
             }
 
-            await Close();
+            Close();
         }*/
 
         public async Task LoadRandom()
         {
             Random random = new Random();
-            await Connect();
+            Connect();
 
             for (int i = 1; i < 44; i++)
                 using (MySqlCommand cmd = new MySqlCommand(
@@ -400,7 +409,7 @@ namespace DataBucket._Base
                     con))
                     await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
         #endregion
 
@@ -408,14 +417,14 @@ namespace DataBucket._Base
         public async Task<object> GetSingleData(string input)
         {
             object obj = null;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT CONCAT_WS(' ', innerID, name, value) FROM location WHERE innerID = {int.Parse(input)}",
                 con))
                 obj = await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return obj;
         }
 
@@ -423,7 +432,7 @@ namespace DataBucket._Base
         {
             Dictionary<string, double> tempDic = new Dictionary<string, double>();
             Task.Run(async () => {
-                await Connect();
+                Connect();
 
                 for (int i = 1; i < 44; i++)
                     using (MySqlCommand cmd = new MySqlCommand(
@@ -434,14 +443,14 @@ namespace DataBucket._Base
                         tempDic[$"{obj.Split(' ')[0]}"] = double.Parse(obj.Split(' ')[1]);
                     }
 
-                await Close();
+                Close();
             });
             return tempDic;
         }
 
         public async Task<object[]> LoadAllById(int id)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT * FROM work WHERE id = {id}",
@@ -451,7 +460,7 @@ namespace DataBucket._Base
                     {
                         await da.FillAsync(dt);
 
-                        await Close();
+                        Close();
                         return dt.Rows[0].ItemArray.Select(n => n).ToArray();
                     }
         }
@@ -459,7 +468,7 @@ namespace DataBucket._Base
         public async Task<string> FillTextBox(string selection)
         {
             string str = string.Empty;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT {selection.Split('.').LastOrDefault()} " +
@@ -467,13 +476,13 @@ namespace DataBucket._Base
                 con))
                 str = (string)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return str;
         }
 
         public async Task<List<object>> FillComboBox(string selection)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"SELECT {selection.Split('.').LastOrDefault()} " +
@@ -483,7 +492,7 @@ namespace DataBucket._Base
                     using (DataTable dt = new DataTable()) {
                         await da.FillAsync(dt);
                         
-                        await Close();
+                        Close();
                         return dt.AsEnumerable().Select(n => n.Field<object>(0)).ToList();
                     }
             }
@@ -492,14 +501,14 @@ namespace DataBucket._Base
         public async Task<string> GetImagerefs(int id) // for the menu on the left
         {
             string str = string.Empty;
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 "SELECT imagerefs FROM work WHERE id = " + id,
                 con))
                 str = (string)await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
             return str;
         }
         #endregion
@@ -507,7 +516,7 @@ namespace DataBucket._Base
         #region Insert, Update, Delete
         public async Task Insert_1T(string table, string fields, string tb0)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO {table} ({fields}) " +
@@ -515,13 +524,13 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task InsertWork(DateTime date, string name, string address, string phone, string note, string invoice, int income, int material, 
             int fuel, int other, bool transaction, bool paid, string imagerefs, string repairman, string concomitant)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO work (date, name, address, phone, note, invoice, income, material, fuel, other, " +
@@ -533,12 +542,12 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task InsertClient(TextBox tx1, TextBox tx2, TextBox tx3, TextBox tx4, TextBox tx5, TextBox tx6, string str, ComboBox tx7, ComboBox tx8)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO clients (name, address, mobile, task, invoice, date, time, workerID, statusID) " +
@@ -548,13 +557,13 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task UpdateWork(DateTime date, string name, string address, string phone, string note, string invoice, int income, int material,
             int fuel, int other, bool transaction, bool paid, string imagerefs, string repairman, string concomitant, int id)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"UPDATE work SET date = '{date:yyyy-MM-dd}', name = '{name}', address = '{address}', phone = '{phone}', note = '{note}', invoice = '{invoice}', " +
@@ -565,24 +574,24 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task DeleteWork(List<int> id)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"DELETE FROM work WHERE id IN ({string.Join(", ", id)})",
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task UpdateClient(TextBox tx1, TextBox tx2, TextBox tx3, TextBox tx4, TextBox tx5, TextBox tx6, string str, ComboBox cb1, ComboBox cb2, Label id)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"UPDATE clients SET name = '{tx1.Text}', address = '{tx2.Text}', mobile = '{tx3.Text}', task = '{tx4.Text}', invoice = '{tx5.Text}', date = '{tx6.Text}', time = '{str}', " +
@@ -592,24 +601,24 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task DeleteClient(int id)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"DELETE FROM clients WHERE id = {id}",
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task InsertCrime(string cb0, string cb1, string cb2, string cb3)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO crime (categoryID, locationID, invoiceID, criminalID) " +
@@ -620,12 +629,12 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task InsertCriminal(string tb0, string tb1, string tb2, string tb3, string tb4)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO criminal (firstName, lastName, age, gender, status) " +
@@ -633,12 +642,12 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
 
         public async Task InsertDepartment(string tb0, string tb1, string tb2, string tb3, string tb4, string tb5, string tb6)
         {
-            await Connect();
+            Connect();
 
             using (MySqlCommand cmd = new MySqlCommand(
                 $"INSERT INTO criminal (name, address1, address2, county_province, city, zip_or_post, other) " +
@@ -646,13 +655,13 @@ namespace DataBucket._Base
                 con))
                 await cmd.ExecuteScalarAsync();
 
-            await Close();
+            Close();
         }
         #endregion
 
         ~Connection()
         {
-            Task.Run(async () => { await Close(); });
+            Task.Run(async () => { Close(); });
             //Close();
         }
     }

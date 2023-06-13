@@ -20,6 +20,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="changelog.md" />
     <None Remove="README.md" />
     <None Remove="Resources\checkmark3.png" />
     <None Remove="Resources\crossmark3.png" />
@@ -30,9 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="README.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\bucket.ico" />
     <Content Include="Resources\checkmark3.png" />
     <Content Include="Resources\crossmark3.png" />
@@ -43,11 +41,19 @@
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="Markdig" Version="0.31.0" />
+    <PackageReference Include="MarkdownSharp" Version="2.0.5" />
     <PackageReference Include="MySql.Data" Version="8.0.32.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\minus.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="changelog.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +66,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="UI\ReleaseTitle.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="View\HomeView.cs">
+      <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
 

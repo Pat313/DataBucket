@@ -1,7 +1,6 @@
-﻿using DataBucket.Properties;
-using System.Drawing;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
+
+using DataBucket.Properties;
 
 namespace DataBucket
 {

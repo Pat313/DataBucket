@@ -26,10 +26,32 @@ namespace DataBucket.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none")]
-        public string con_1 {
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost; database=mobil33acc; uid=root; password=; sslmode = none")]
+        public string localhost {
             get {
-                return ((string)(this["con_1"]));
+                return ((string)(this["localhost"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none")]
+        public string server_1 {
+            get {
+                return ((string)(this["server_1"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"localhost\"")]
+        public string serverChosen {
+            get {
+                return ((string)(this["serverChosen"]));
+            }
+            set {
+                this["serverChosen"] = value;
             }
         }
     }

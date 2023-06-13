@@ -2,12 +2,22 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataBucket.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="con_1" Type="(Connection string)" Scope="Application">
+    <Setting Name="localhost" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;server=localhost; database=mobil33acc; uid=root; password=; sslmode = none&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">server=localhost; database=mobil33acc; uid=root; password=; sslmode = none</Value>
+    </Setting>
+    <Setting Name="server_1" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">server=192.168.100.2; database=mobil33acc; uid=root; password=; sslmode = none</Value>
+    </Setting>
+    <Setting Name="serverChosen" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"localhost"</Value>
     </Setting>
   </Settings>
 </SettingsFile>

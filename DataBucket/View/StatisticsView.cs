@@ -5,7 +5,7 @@ namespace DataBucket
 {
     public partial class StatisticsView : UserControl
     {
-        public static WorkView Instance { get; } = new();
+        public static StatisticsView Instance { get; } = new();
         private readonly Connection conn = Connection.Instance;
 
         public StatisticsView()

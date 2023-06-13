@@ -143,13 +143,16 @@
             // 
             // lblVersion
             // 
+            lblVersion.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblVersion.AutoSize = true;
+            lblVersion.BackColor = Color.FromArgb(30, 30, 30);
+            lblVersion.BorderStyle = BorderStyle.FixedSingle;
             lblVersion.Font = new Font("Calibri", 13.8F, FontStyle.Regular, GraphicsUnit.Point);
-            lblVersion.Location = new Point(12, 816);
+            lblVersion.Location = new Point(3, 820);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(120, 28);
+            lblVersion.Size = new Size(73, 30);
             lblVersion.TabIndex = 24;
-            lblVersion.Text = "Ver: 0.0.0.0";
+            lblVersion.Text = "e0.0.0";
             // 
             // btnSettings
             // 

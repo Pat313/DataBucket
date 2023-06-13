@@ -1,10 +1,6 @@
-﻿using System;
-using System.Drawing;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 using System.Diagnostics;
 using System.Net;
-
-using MySql.Data.MySqlClient;
 
 using FontAwesome.Sharp;
 
@@ -12,7 +8,6 @@ using Microsoft.Win32;
 
 using DataBucket.View;
 using DataBucket.UI;
-using System.Reflection;
 
 namespace DataBucket.Presenter
 {
@@ -64,7 +59,9 @@ namespace DataBucket.Presenter
 
             btnStartServer.Click += btnStartServer_Click;
 
-            lblVersion.Text = $"Ver: {VersionLabel.ToString(4)}";
+            /*lblVersion.MouseEnter += lblVersion_MouseEnter;
+            lblVersion.MouseLeave += lblVersion_MouseLeave;
+            lblVersion.MouseClick += lblVersion_MouseClick;*/
 
             UserPreferenceChanged = new UserPreferenceChangedEventHandler(SystemEvents_UserPreferenceChanged);
             SystemEvents.UserPreferenceChanged += UserPreferenceChanged;
@@ -73,11 +70,14 @@ namespace DataBucket.Presenter
             LoadViews();
 
             LoadTheme();
+
+            using (StreamReader reader = new StreamReader(Path.Combine(Settings.rootPath, "changelog.md")))
+                lblVersion.Text = reader.ReadLine().Split(' ')[1];
         }
 
         private void LoadViews()
         {
-            //pnlMain.Controls.Add(WorkView.Instance); // home
+            pnlMain.Controls.Add(HomeView.Instance);
             pnlMain.Controls.Add(WorkView.Instance);
             pnlMain.Controls.Add(WorkerView.Instance);
             pnlMain.Controls.Add(AccountingView.Instance);
@@ -90,8 +90,8 @@ namespace DataBucket.Presenter
             btnAccounting.PerformClick();
             btnLiabilities.PerformClick();
             btnStatistics.PerformClick();
-            btnSettings.PerformClick();
-            btnHome.PerformClick();*/
+            btnSettings.PerformClick();*/
+            btnHome.PerformClick();
         }
 
         private void LoadTheme()
@@ -175,8 +175,6 @@ namespace DataBucket.Presenter
             public static string settings = "Beállítások";
         }
 
-        private Version VersionLabel => Assembly.GetExecutingAssembly().GetName().Version ?? new Version(0, 0, 0, 0);
-
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
@@ -215,7 +213,7 @@ namespace DataBucket.Presenter
         private void btnHome_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color1);
-
+            HomeView.Instance.BringToFront();
             lblCurrentChild.Text = ButtonNames.home;
         }
 
@@ -231,46 +229,35 @@ namespace DataBucket.Presenter
         private void btnWorkers_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color2);
-            //if (!pnlMain.Controls.Contains(WorkerView.Instance)) pnlMain.Controls.Add(WorkerView.Instance);
             WorkerView.Instance.BringToFront();
-            //WorkerView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.worker;
         }
 
         private void btnAccounting_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color4);
-            if (!pnlMain.Controls.Contains(AccountingView.Instance))
-                pnlMain.Controls.Add(AccountingView.Instance);
             AccountingView.Instance.BringToFront();
-            //AccountingView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.accounting;
         }
 
         private void btnLiabilities_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color5);
-            //if (!pnlMain.Controls.Contains(LiabilitiesView.Instance)) pnlMain.Controls.Add(LiabilitiesView.Instance);
             LiabilitiesView.Instance.BringToFront();
-            //LiabilitiesView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.liabilities;
         }
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color6);
-            //if (!pnlMain.Controls.Contains(StatisticsView.Instance)) pnlMain.Controls.Add(StatisticsView.Instance);
             StatisticsView.Instance.BringToFront();
-            //StatisticsView.Instance.Show();
             lblCurrentChild.Text = ButtonNames.statistics;
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, RGBColors.color7);
-
             SettingsView.Instance.BringToFront();
-
             lblCurrentChild.Text = ButtonNames.settings;
         }
 
@@ -366,7 +353,9 @@ namespace DataBucket.Presenter
                     Process.Start(new ProcessStartInfo()
                     {
                         FileName = @"D:\xampp\xampp-control.exe",
-                        WindowStyle = ProcessWindowStyle.Hidden
+                        WindowStyle = ProcessWindowStyle.Hidden, // tray
+                        UseShellExecute = true, // UAC
+                        Verb = "runas" // admin
                     });
                 }
             }
@@ -374,6 +363,23 @@ namespace DataBucket.Presenter
             {
                 MessageBox.Show("A szerver már fut!\n" + ex);
             }
+        }
+
+        private void lblVersion_MouseEnter(object? sender, EventArgs e)
+        {
+            lblVersion.BackColor = Color.FromArgb(60, 60, 60);
+        }
+
+        private void lblVersion_MouseLeave(object? sender, EventArgs e)
+        {
+            lblVersion.BackColor = Color.FromArgb(30, 30, 30);
+        }
+
+        private void lblVersion_MouseClick(object? sender, MouseEventArgs e)
+        {
+            lblVersion.BackColor = Color.FromArgb(45, 45, 45);
+
+            // check for updates -> change to button later
         }
 
         /*protected override CreateParams CreateParams

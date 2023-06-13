@@ -28,6 +28,7 @@ namespace DataBucket
                     RDW_FRAME | RDW_IUPDATENOW | RDW_INVALIDATE);
             }
         }
+
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);

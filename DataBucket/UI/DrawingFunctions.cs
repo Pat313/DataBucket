@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using Org.BouncyCastle.Asn1.Tsp;
+using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Reflection;
 
@@ -56,6 +57,61 @@ namespace DataBucket.UI
             return path;
         }
         #endregion
+
+        public static void DrawTag(Graphics graphics, Point location, char tagChar)
+        {
+            Size tagSize = new Size(125, 30);
+            int cornerRadius = 15;
+
+            string tagText;
+            Color backColor;
+            Color foreColor;
+
+            if (tagInfoDict.TryGetValue(tagChar, out TagInfo tagInfo))
+            {
+                backColor = tagInfo.BackColor;
+                foreColor = tagInfo.ForeColor;
+                tagText = tagInfo.TagText;
+            }
+            else // Default
+            {
+                backColor = Color.LightGray;
+                foreColor = Color.Black;
+                tagText = "Ismeretlen";
+            }
+
+            Rectangle tagBounds = new Rectangle(location, tagSize);
+
+            using Font tagFont = new("Calibri", 10f * graphics.DpiY / 96f, FontStyle.Bold);
+            using GraphicsPath path = GetRoundedRectPath(tagBounds, cornerRadius);
+            using SolidBrush backBrush = new SolidBrush(backColor);
+            using SolidBrush foreBrush = new SolidBrush(foreColor);
+            using StringFormat format = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+            graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            graphics.FillPath(backBrush, path);
+            graphics.DrawString(tagText, tagFont, foreBrush, tagBounds, format);
+        }
+
+        private struct TagInfo
+        {
+            public Color BackColor { get; set; }
+            public Color ForeColor { get; set; }
+            public string TagText { get; set; }
+        }
+
+        private readonly static Dictionary<char, TagInfo> tagInfoDict = new Dictionary<char, TagInfo>()
+        {
+            { 'N', new TagInfo { BackColor = Color.FromArgb(70, 140, 70), TagText = "Újdonság", ForeColor = Color.FromArgb(220, 245, 220) } },
+            { 'S', new TagInfo { BackColor = Color.FromArgb(175, 100, 40), TagText = "Biztonság", ForeColor = Color.FromArgb(255, 190, 128) } },
+            { 'C', new TagInfo { BackColor = Color.FromArgb(140, 120, 60), TagText = "Változás", ForeColor = Color.FromArgb(255, 240, 150) } },
+            { 'F', new TagInfo { BackColor = Color.FromArgb(80, 100, 140), TagText = "Javítva", ForeColor = Color.FromArgb(200, 220, 255) } },
+            { 'A', new TagInfo { BackColor = Color.FromArgb(140, 120, 60), TagText = "Közlemény", ForeColor = Color.FromArgb(255, 235, 150) } },
+            { 'I', new TagInfo { BackColor = Color.FromArgb(120, 40, 40), TagText = "Hiba", ForeColor = Color.FromArgb(255, 160, 160) } },
+            { 'L', new TagInfo { BackColor = Color.FromArgb(100, 80, 140), TagText = "Könyvtárak" , ForeColor = Color.FromArgb(200, 180, 255) } },
+            { 'D', new TagInfo { BackColor = Color.FromArgb(120, 40, 40), TagText = "Elavult", ForeColor = Color.FromArgb(255, 160, 160) } },
+            { 'B', new TagInfo { BackColor = Color.FromArgb(120, 40, 40), TagText = "Fontos", ForeColor = Color.FromArgb(255, 160, 160) } },
+        };
+
 
         public static class AlterView
         {
